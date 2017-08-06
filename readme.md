@@ -9,15 +9,9 @@ Prostate-specific antigen (PSA) is produced for the ejaculate, where it liquifie
 Download the two data files:
 
 - [PSA results from Dr. Proudlove](https://drive.google.com/open?id=0BzrdQfHR2I5DdHNFMWtSQ3JSclE)
-- [PSA results from Dr. Perry](https://drive.google.com/open?id=0BzrdQfHR2I5DdF9pRUM1c1FZZmM)T
+- [PSA results from Dr. Perry](https://drive.google.com/open?id=0BzrdQfHR2I5DdF9pRUM1c1FZZmM)
 
 ## Methodology
-
-### Mines data munging
-
-TBD
-
-### Mines + violations analysis
 
 I will write the methodology for this repository.
 
