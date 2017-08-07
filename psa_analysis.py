@@ -17,7 +17,7 @@
 
 # ## Methodology
 #
-# TBD
+# Two plots are drawn with pandas.DataFrame.plot.
 
 # ## Data
 #
