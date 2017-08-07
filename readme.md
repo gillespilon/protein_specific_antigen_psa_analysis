@@ -18,7 +18,7 @@ Download the two data files:
 
 ## Methodology
 
-I will write the methodology for this repository.
+Two plots are drawn with pandas.DataFrame.plot.
 
 ## References
 
