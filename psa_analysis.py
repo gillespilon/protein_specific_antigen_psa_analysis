@@ -10,7 +10,7 @@
 #
 # From an initial PSA test immediately after the last radiation treatment and every six months since, I have recorded the date, results, and consulting physician. These results are analysed in this Jupyter notebook.
 #
-# This iPython notebook creates two scatter plots:
+# This Jpuyter Notebook creates two scatter plots:
 #
 # 1. PSA v. Date, using the full range of the data to set the y axis limits.
 # 2. PSA v. Date, using the *trigger point* of 3.0 to set the y axis limits. This upper limit is the point at which the doctors said I would need further treatment if my PSA results were to reach this value.
