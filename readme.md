@@ -4,7 +4,7 @@
 
 Prostate-specific antigen (PSA) is produced for the ejaculate, where it liquifies the semen in the seminal coagulum and allows sperm to swim freely (Balk et.al. 2003). PSA is present in small quantities in the serum of men with healthy prostates, but is often elevated in the presence of prostate cancer or other prostate disorders (Catalona et.al. 1994).
 
-This iPython notebook creates two scatter plots:
+This Jupyter Notebook creates two scatter plots:
 
 1. PSA v. Date, using the full range of the data to set the y axis limits.
 2. PSA v. Date, using the *trigger point* of 3.0 to set the y axis limits. This upper limit is the point at which the doctors said I would need further treatment if my PSA results were to reach this value.
