@@ -1,7 +1,5 @@
 #! /usr/bin/env python3
 
-# coding: utf-8
-
 # # Prostate-specific antigen (PSA) analysis
 
 # ## In brevi
@@ -28,22 +26,11 @@
 # - [PSA results from Dr. Proudlove](https://drive.google.com/open?id=0BzrdQfHR2I5DdHNFMWtSQ3JSclE)
 # - [PSA results from Dr. Perry](https://drive.google.com/open?id=0BzrdQfHR2I5DdF9pRUM1c1FZZmM)
 
-# In[1]:
-
 import pandas as pd
 import matplotlib.pyplot as plt
 
-get_ipython().magic('matplotlib inline')
-get_ipython().magic("config InlineBackend.figure_format = 'svg'")
-
-
-# In[2]:
-
 psa_proudlove = pd.read_csv('psa_proudlove.csv', parse_dates=True, index_col='Date')
 psa_perry = pd.read_csv('psa_perry.csv', parse_dates=True, index_col='Date')
-
-
-# In[3]:
 
 title = 'Prosate-specific Antigen (PSA) Test'
 max_date = max(psa_proudlove.index.max(),
@@ -51,9 +38,6 @@ max_date = max(psa_proudlove.index.max(),
 subtitle = f'Gilles Pilon {max_date}'
 yaxislabel = 'PSA (ng/mL)'
 xaxislabel = 'Date'
-
-
-# In[4]:
 
 for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
     # Create a subplot and the first scatter plot.
