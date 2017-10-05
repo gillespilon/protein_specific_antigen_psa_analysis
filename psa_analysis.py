@@ -45,9 +45,9 @@ proudlove_c, perry_c, *_ = cm.Paired.colors
 
 for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
     # Create a subplot and the first scatter plot.
-    ax = psa_proudlove.plot(y='PSA', color='red', style='.', label='Dr. Proudlove')
+    ax = psa_proudlove.plot(y='PSA', color=proudlove_c, style='.', label='Dr. Proudlove')
     # Add another scatter plot.
-    psa_perry.plot(y='PSA', color='blue', style='.', label='Dr. Perry', ax=ax)
+    psa_perry.plot(y='PSA', color=perry_c, style='.', label='Dr. Perry', ax=ax)
     # Remove the top and right spines.
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
