@@ -39,6 +39,10 @@ subtitle = f'Gilles Pilon {max_date}'
 yaxislabel = 'PSA (ng/mL)'
 xaxislabel = 'Date'
 
+# Use a colour-blind friendly colormap, "Paired".
+import matplotlib.cm as cm
+proudlove_c, perry_c, *_ = cm.Paired.colors
+
 for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
     # Create a subplot and the first scatter plot.
     ax = psa_proudlove.plot(y='PSA', color='red', style='.', label='Dr. Proudlove')
