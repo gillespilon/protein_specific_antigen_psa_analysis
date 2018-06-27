@@ -8,6 +8,7 @@ This Jupyter Notebook creates two scatter plots:
 
 1. PSA v. Date, using the full range of the data to set the y axis limits.
 2. PSA v. Date, using the *trigger point* of 3.0 to set the y axis limits. This upper limit is the point at which the doctors said I would need further treatment if my PSA results were to reach this value.
+3. PSA v. Date, using the full range of the data to set the y axis limits, and a linear regression line fitted to the data.
 
 ## Data
 
@@ -15,10 +16,11 @@ Download the two data files:
 
 - [PSA results from Dr. Proudlove](https://drive.google.com/open?id=0BzrdQfHR2I5DdHNFMWtSQ3JSclE)
 - [PSA results from Dr. Perry](https://drive.google.com/open?id=0BzrdQfHR2I5DdF9pRUM1c1FZZmM)
+- [PSA results from Dr. Proudlove and Dr. Perry](https://drive.google.com/open?id=1P-m2GIVUq9o68cvTXa16-cpfb3xMp7fw)
 
 ## Methodology
 
-Two plots are drawn with pandas.DataFrame.plot.
+Three plots are drawn with pandas.DataFrame.plot. Ordinary least squares (OLS) regression is estimated with statsmodels.formula.api.
 
 ## References
 
@@ -28,7 +30,7 @@ Catalona, W.J., J.P. Richie, F.R. Ahmann, M.A. Hudson, P.T. Scardino, R.C. Flani
 
 ## License
 
-Copyright (c) 2017 GILLES PILON <gillespilon13@gmail.com>.
+Copyright (c) 2018 GILLES PILON <gillespilon13@gmail.com>.
 
 Permission to use, copy, modify, and distribute this software for any purpose with or without fee is hereby granted, provided that the above
 copyright notice and this permission notice appear in all copies.
