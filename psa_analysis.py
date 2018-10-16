@@ -118,10 +118,8 @@ for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
     ax.figure.savefig(f'{filename}.pdf', format='pdf')
 
 # Perform a linear regression.
-import datetime as dt
 import statsmodels.formula.api as smf
 psa_all['Julian'] = psa_all.index.to_julian_date()
-psa_all
 results = smf.ols(formula='PSA ~ Julian', data=psa_all).fit()
 parameters = results.params
 #results.pvalues
@@ -151,7 +149,6 @@ ax.figure.savefig('gilles_psa_regression.pdf', format='pdf')
 
 
 print('My PSA will reach 3.0 on', gregorian_predicted, '.')
-
 print(results.summary())
 
 # ## References
