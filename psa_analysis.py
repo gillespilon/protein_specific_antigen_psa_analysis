@@ -127,7 +127,7 @@ julian_predicted = (3.0 - parameters[0])/parameters[1]
 gregorian_predicted = pd.to_datetime(julian_predicted, unit='D',\
                                      origin='julian').strftime('%Y-%m-%d')
 psa_all['Predicted'] = results.predict(psa_all['Julian'])
-psa_all.drop(columns='Julian', inplace=True)
+psa_all = psa_all.drop(columns='Julian')
 # Plot the scatter plot.
 ax = psa_all.plot(y='PSA', color=all_c, style='.', legend=False)
 # Add the regression line.
