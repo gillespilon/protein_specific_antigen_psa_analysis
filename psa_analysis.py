@@ -1,73 +1,14 @@
 #! /usr/bin/env python3
 
-# coding: utf-8
+'''
+Prostate-specific antigen (PSA) analysis
+'''
 
-# # Prostate-specific antigen (PSA) analysis
 
-# # Document information
+# time -f '%e' ./psa_analysis.py > psa_analysis.txt
+# ./psa_analysis.py > psa_analysis.txt
 
-# <table align="left">
-#     <tr>
-#         <th class="text-align:left">Title</th>
-#         <td class="text-align:left">Protein-specific antigen (PSA) analysis</td>
-#     </tr>
-#     <tr>
-#         <th class="text-align:left">Last modified</th>
-#         <td class="text-align:left">2018-06-28</td>
-#     </tr>
-#     <tr>
-#         <th class="text-align:left">Author</th>
-#         <td class="text-align:left">Gilles Pilon <gillespilon13@gmail.com></td>
-#     </tr>
-#     <tr>
-#         <th class="text-align:left">Status</th>
-#         <td class="text-align:left">Active</td>
-#     </tr>
-#     <tr>
-#         <th class="text-align:left">Type</th>
-#         <td class="text-align:left">Jupyter notebook</td>
-#     </tr>
-#     <tr>
-#         <th class="text-align:left">Created</th>
-#         <td class="text-align:left">2017-08-02</td>
-#     </tr>
-#     <tr>
-#         <th class="text-align:left">File name</th>
-#         <td class="text-align:left">psa_analysis.ipynb</td>
-#     </tr>
-#     <tr>
-#         <th class="text-align:left">Other files required</th>
-#         <td class="text-align:left">psa_proudlove.csv<br />psa_perry.csv<br />psa_all.csv</td>
-#     </tr>
-# </table>
 
-# ## In brevi
-#
-# Prostate-specific antigen (PSA) is produced for the ejaculate, where it liquifies the semen in the seminal coagulum and allows sperm to swim freely (Balk et.al. 2003). PSA is present in small quantities in the serum of men with healthy prostates, but is often elevated in the presence of prostate cancer or other prostate disorders (Catalona et.al. 1994).
-#
-# I was diagnosed with prostate cancer on 2013-03-08. I had a radical prostatectomy on 2013-06-11 and 30 radiation treatments from 2013-09-13 to 2013-10-18.
-#
-# From an initial PSA test immediately after the last radiation treatment and every six months since, I have recorded the date, results, and consulting physician. These results are analysed in this Jupyter notebook.
-#
-# This Jupyter Notebook creates three scatter plots:
-#
-# 1. PSA v. Date, using the full range of the data to set the y axis limits.
-# 2. PSA v. Date, using the *trigger point* of 3.0 to set the y axis limits. This upper limit is the point at which the doctors said I would need further treatment if my PSA results were to reach this value.
-# 3. PSA v. Date, using the full range of the data to set the y axis limits, and a linear regression line fitted to the data.
-
-# ## Methodology
-#
-# Three plots are drawn with pandas.DataFrame.plot. Ordinary least squares (OLS) regression is estimated with statsmodels.
-
-# ## Data
-#
-# Download the three data files:
-#
-# - [PSA results from Dr. Proudlove](https://drive.google.com/open?id=0BzrdQfHR2I5DdHNFMWtSQ3JSclE)
-# - [PSA results from Dr. Perry](https://drive.google.com/open?id=0BzrdQfHR2I5DdF9pRUM1c1FZZmM)
-# - [PSA results from Dr. Proudlove and Dr. Perry](https://drive.google.com/open?id=1P-m2GIVUq9o68cvTXa16-cpfb3xMp7fw)
-
-# Import the required librairies and magics.
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -148,8 +89,7 @@ ax.figure.savefig('gilles_psa_regression.svg', format='svg')
 ax.figure.savefig('gilles_psa_regression.pdf', format='pdf')
 
 
-print('My PSA will reach 3.0 on', gregorian_predicted, '.')
-print(results.summary())
+print(f'My PSA will reach 3.0 on {gregorian_predicted}.\n\n{results.summary()}')
 
 # ## References
 #
