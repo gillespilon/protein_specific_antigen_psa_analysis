@@ -11,6 +11,7 @@ Prostate-specific antigen (PSA) analysis
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 
 # Read the data.
 psa_proudlove = pd.read_csv('psa_proudlove.csv', parse_dates=True,\
@@ -26,17 +27,19 @@ subtitle = f'Gilles Pilon {max_date}'
 yaxislabel = 'PSA (ng/mL)'
 xaxislabel = 'Date'
 
-# Use a colour-blind friendly colormap, "Paired".
-import matplotlib.cm as cm
-proudlove_c, perry_c, all_c, regression_c, *_ = cm.Paired.colors
+
+# See "paired" in "qualitative colormaps"
+# https://matplotlib.org/tutorials/colors/colormaps.html
+c = cm.Paired.colors # c[0] c[1] ... c[11]
+
 
 # Plot the scatter plots.
 for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
     # Plot the the first scatter plot.
-    ax = psa_proudlove.plot(y='PSA', color=proudlove_c, style='.',\
+    ax = psa_proudlove.plot(y='PSA', color=c[0], style='.',\
                             label='Dr. Proudlove')
     # Add another scatter plot.
-    psa_perry.plot(y='PSA', color=perry_c, style='.', label='Dr. Perry', ax=ax)
+    psa_perry.plot(y='PSA', color=c[1], style='.', label='Dr. Perry', ax=ax)
     # Remove the top and right spines.
     for spine in 'right', 'top':
         ax.spines[spine].set_color('none')
@@ -70,9 +73,9 @@ gregorian_predicted = pd.to_datetime(julian_predicted, unit='D',\
 psa_all['Predicted'] = results.predict(psa_all['Julian'])
 psa_all = psa_all.drop(columns='Julian')
 # Plot the scatter plot.
-ax = psa_all.plot(y='PSA', color=all_c, style='.', legend=False)
+ax = psa_all.plot(y='PSA', color=c[2], style='.', legend=False)
 # Add the regression line.
-psa_all.plot(y='Predicted', color=regression_c, legend=False, ax=ax)
+psa_all.plot(y='Predicted', color=c[3], legend=False, ax=ax)
 # Add the title and subtitle.
 ax.set_title(title + '\n' + subtitle)
 # Add the Y axis label.
