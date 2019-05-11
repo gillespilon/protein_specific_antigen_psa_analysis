@@ -69,7 +69,7 @@ psa_all['Predicted'] = results.predict(psa_all['Julian'])
 psa_all = psa_all.drop(columns='Julian')
 ax = psa_all.plot(y='PSA', color=c[2], style='.', legend=False)
 psa_all.plot(y='Predicted', color=c[3], legend=False, ax=ax)
-ax.set_title(title + '\n' + subtitle)
+ax.set_title(f'{title}\n{subtitle}')
 ax.set_ylabel(yaxislabel)
 ax.set_xlabel(xaxislabel)
 # Use autoscale to prevent points being clipped by the axes.
