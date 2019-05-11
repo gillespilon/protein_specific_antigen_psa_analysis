@@ -47,7 +47,7 @@ for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
                             label='Dr. Proudlove')
     psa_perry.plot(y='PSA', color=c[1], style='.', label='Dr. Perry', ax=ax)
     despine(ax)
-    ax.set_title(title + '\n' + subtitle)
+    ax.set_title(f'{title}\n{subtitle}')
     ax.set_ylabel(yaxislabel)
     ax.set_xlabel(xaxislabel)
     # Use autoscale to prevent points being clipped by the axes.
