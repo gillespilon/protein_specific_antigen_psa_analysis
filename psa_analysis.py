@@ -56,6 +56,7 @@ for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
         ax.set_ylim(*ylim)
     ax.legend(loc='upper left', frameon=False)
     ax.figure.savefig(f'{filename}.svg', format='svg')
+    ax.figure.savefig(f'{filename}.png', format='png')
     ax.figure.savefig(f'{filename}.pdf', format='pdf')
 
 import statsmodels.formula.api as smf
@@ -76,6 +77,7 @@ ax.set_xlabel(xaxislabel)
 ax.autoscale(tight=False)
 despine(ax)
 ax.figure.savefig('gilles_psa_regression.svg', format='svg')
+ax.figure.savefig('gilles_psa_regression.png', format='png')
 ax.figure.savefig('gilles_psa_regression.pdf', format='pdf')
 
 
