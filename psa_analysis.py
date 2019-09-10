@@ -12,6 +12,7 @@ time -f '%e' ./psa_analysis.py | tee psa_analysis.txt
 
 
 import pandas as pd
+import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib.axes as axes
 import statsmodels.formula.api as smf
@@ -45,8 +46,10 @@ c = cm.Paired.colors  # c[0] c[1] ... c[11]
 
 
 for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
-    ax = psa_proudlove.plot(y='PSA', color=c[0], style='.',
-                            label='Dr. Proudlove')
+    fig, ax = plt.subplots(figsize=(12, 12))
+    psa_proudlove.plot(y='PSA', color=c[0], style='.',
+                       label='Dr. Proudlove',
+                       ax=ax)
     psa_perry.plot(y='PSA', color=c[1], style='.', label='Dr. Perry', ax=ax)
     despine(ax)
     ax.set_title(f'{title}\n{subtitle}')
@@ -69,7 +72,8 @@ gregorian_predicted = pd.to_datetime(julian_predicted, unit='D',
                                      origin='julian').strftime('%Y-%m-%d')
 psa_all['Predicted'] = results.predict(psa_all['Julian'])
 psa_all = psa_all.drop(columns='Julian')
-ax = psa_all.plot(y='PSA', color=c[2], style='.', legend=False)
+fig, ax = plt.subplots(figsize=(12, 12))
+psa_all.plot(y='PSA', color=c[2], style='.', legend=False, ax=ax)
 psa_all.plot(y='Predicted', color=c[3], legend=False, ax=ax)
 ax.set_title(f'{title}\n{subtitle}')
 ax.set_ylabel(yaxislabel)
