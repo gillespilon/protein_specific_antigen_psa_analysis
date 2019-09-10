@@ -12,6 +12,7 @@ Prostate-specific antigen (PSA) analysis
 import pandas as pd
 import matplotlib.cm as cm
 import matplotlib.axes as axes
+import statsmodels.formula.api as smf
 
 
 def despine(ax: axes.Axes) -> None:
@@ -58,7 +59,6 @@ for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
     ax.figure.savefig(f'{filename}.png', format='png')
     ax.figure.savefig(f'{filename}.pdf', format='pdf')
 
-import statsmodels.formula.api as smf
 psa_all['Julian'] = psa_all.index.to_julian_date()
 results = smf.ols(formula='PSA ~ Julian', data=psa_all).fit()
 parameters = results.params
