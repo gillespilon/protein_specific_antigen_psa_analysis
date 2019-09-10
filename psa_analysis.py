@@ -2,6 +2,8 @@
 
 '''
 Prostate-specific antigen (PSA) analysis
+
+time -f '%e' ./psa_analysis.py | tee psa_analysis.txt
 '''
 
 
