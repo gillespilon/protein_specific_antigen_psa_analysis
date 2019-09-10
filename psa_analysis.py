@@ -80,4 +80,5 @@ ax.figure.savefig('gilles_psa_regression.png', format='png')
 ax.figure.savefig('gilles_psa_regression.pdf', format='pdf')
 
 
-print(f'My PSA will reach 3.0 on {gregorian_predicted}.\n\n{results.summary()}')
+print(f'My PSA will reach 3.0 on {gregorian_predicted}.'
+      f'\n\n{results.summary()}')
