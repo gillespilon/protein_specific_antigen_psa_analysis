@@ -38,7 +38,7 @@ xaxislabel = 'Date'
 
 # See "paired" in "qualitative colormaps"
 # https://matplotlib.org/tutorials/colors/colormaps.html
-c = cm.Paired.colors # c[0] c[1] ... c[11]
+c = cm.Paired.colors  # c[0] c[1] ... c[11]
 
 
 for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
