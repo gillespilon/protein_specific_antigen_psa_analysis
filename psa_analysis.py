@@ -10,7 +10,6 @@ Prostate-specific antigen (PSA) analysis
 
 
 import pandas as pd
-import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib.axes as axes
 
