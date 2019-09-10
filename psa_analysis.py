@@ -22,7 +22,7 @@ def despine(ax: axes.Axes) -> None:
         ax.spines[spine].set_color('none')
 
 
-psa_proudlove = pd.read_csv('psa_proudlove.csv', parse_dates=True,\
+psa_proudlove = pd.read_csv('psa_proudlove.csv', parse_dates=True,
                             index_col='Date')
 psa_perry = pd.read_csv('psa_perry.csv', parse_dates=True, index_col='Date')
 psa_all = pd.read_csv('psa_all.csv', parse_dates=True, index_col='Date')
