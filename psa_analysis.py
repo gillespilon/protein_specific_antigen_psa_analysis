@@ -42,7 +42,7 @@ c = cm.Paired.colors  # c[0] c[1] ... c[11]
 
 
 for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
-    ax = psa_proudlove.plot(y='PSA', color=c[0], style='.',\
+    ax = psa_proudlove.plot(y='PSA', color=c[0], style='.',
                             label='Dr. Proudlove')
     psa_perry.plot(y='PSA', color=c[1], style='.', label='Dr. Perry', ax=ax)
     despine(ax)
