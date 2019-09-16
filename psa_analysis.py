@@ -18,6 +18,10 @@ import matplotlib.axes as axes
 import statsmodels.formula.api as smf
 
 
+# https://matplotlib.org/tutorials/colors/colormaps.html
+c = cm.Paired.colors  # c[0] c[1] ... c[11]
+
+
 def despine(ax: axes.Axes) -> None:
     '''
     Remove the top and right spines of a graph
@@ -38,11 +42,6 @@ max_date = max(psa_proudlove.index.max(),
 subtitle = f'Gilles Pilon {max_date}'
 yaxislabel = 'PSA (ng/mL)'
 xaxislabel = 'Date'
-
-
-# See "paired" in "qualitative colormaps"
-# https://matplotlib.org/tutorials/colors/colormaps.html
-c = cm.Paired.colors  # c[0] c[1] ... c[11]
 
 
 for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
