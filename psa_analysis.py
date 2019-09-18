@@ -48,7 +48,8 @@ if __name__ == '__main__':
         psa_proudlove.plot(y='PSA', color=c[0], style='.',
                            label='Dr. Proudlove',
                            ax=ax)
-        psa_perry.plot(y='PSA', color=c[1], style='.', label='Dr. Perry', ax=ax)
+        psa_perry.plot(y='PSA', color=c[1], style='.',
+                       label='Dr. Perry', ax=ax)
         despine(ax)
         ax.set_title(f'{title}\n{subtitle}')
         ax.set_ylabel(yaxislabel)
