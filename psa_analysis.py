@@ -33,7 +33,9 @@ def despine(ax: axes.Axes) -> None:
 if __name__ == '__main__':
     psa_proudlove = pd.read_csv('psa_proudlove.csv', parse_dates=True,
                                 index_col='Date')
-    psa_perry = pd.read_csv('psa_perry.csv', parse_dates=True, index_col='Date')
+    psa_perry = pd.read_csv('psa_perry.csv',
+                            parse_dates=True,
+                            index_col='Date')
     psa_all = pd.read_csv('psa_all.csv', parse_dates=True, index_col='Date')
     title = 'Prosate-specific Antigen (PSA) Test'
     max_date = max(psa_proudlove.index.max(),
