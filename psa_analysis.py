@@ -85,10 +85,12 @@ if __name__ == '__main__':
                  color=c[2],
                  style='.',
                  legend=False,
+                 label=None,
                  ax=ax)
     psa_all.plot(y='Predicted',
                  color=c[3],
                  legend=False,
+                 label=None,
                  ax=ax)
     ax.set_title(f'{title}\n{subtitle}')
     ax.set_ylabel(yaxislabel)
