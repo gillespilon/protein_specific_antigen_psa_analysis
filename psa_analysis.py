@@ -31,12 +31,15 @@ def despine(ax: axes.Axes) -> None:
 
 
 if __name__ == '__main__':
-    psa_proudlove = pd.read_csv('psa_proudlove.csv', parse_dates=True,
+    psa_proudlove = pd.read_csv('psa_proudlove.csv',
+                                parse_dates=True,
                                 index_col='Date')
     psa_perry = pd.read_csv('psa_perry.csv',
                             parse_dates=True,
                             index_col='Date')
-    psa_all = pd.read_csv('psa_all.csv', parse_dates=True, index_col='Date')
+    psa_all = pd.read_csv('psa_all.csv',
+                          parse_dates=True,
+                          index_col='Date')
     title = 'Prosate-specific Antigen (PSA) Test'
     max_date = max(psa_proudlove.index.max(),
                    psa_perry.index.max()).date().isoformat()
@@ -45,11 +48,16 @@ if __name__ == '__main__':
     xaxislabel = 'Date'
     for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
         fig, ax = plt.subplots(figsize=(12, 12))
-        psa_proudlove.plot(y='PSA', color=c[0], style='.',
+        psa_proudlove.plot(y='PSA',
+                           color=c[0],
+                           style='.',
                            label='Dr. Proudlove',
                            ax=ax)
-        psa_perry.plot(y='PSA', color=c[1], style='.',
-                       label='Dr. Perry', ax=ax)
+        psa_perry.plot(y='PSA',
+                       color=c[1],
+                       style='.',
+                       label='Dr. Perry',
+                       ax=ax)
         despine(ax)
         ax.set_title(f'{title}\n{subtitle}')
         ax.set_ylabel(yaxislabel)
@@ -71,8 +79,15 @@ if __name__ == '__main__':
     psa_all['Predicted'] = results.predict(psa_all['Julian'])
     psa_all = psa_all.drop(columns='Julian')
     fig, ax = plt.subplots(figsize=(12, 12))
-    psa_all.plot(y='PSA', color=c[2], style='.', legend=False, ax=ax)
-    psa_all.plot(y='Predicted', color=c[3], legend=False, ax=ax)
+    psa_all.plot(y='PSA',
+                 color=c[2],
+                 style='.',
+                 legend=False,
+                 ax=ax)
+    psa_all.plot(y='Predicted',
+                 color=c[3],
+                 legend=False,
+                 ax=ax)
     ax.set_title(f'{title}\n{subtitle}')
     ax.set_ylabel(yaxislabel)
     ax.set_xlabel(xaxislabel)
