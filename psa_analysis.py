@@ -58,22 +58,27 @@ if __name__ == '__main__':
     subtitle = f'Gilles Pilon {max_date}'
     yaxislabel = 'PSA (ng/mL)'
     xaxislabel = 'Date'
-    for ylim, filename in \
-            (None, 'gilles_psa'),\
-            ((-0.05, 3), 'gilles_psa_max'):
+    psa_all, results, gregorian_predicted = psa_reg(psa_all)
+    for df1, df2, y1, y2, ylim, g1, g2, filename in \
+            (psa_proudlove, psa_perry, 'PSA', 'PSA', None, '.', '.',
+                'gilles_psa'),\
+            (psa_proudlove, psa_perry, 'PSA', 'PSA', (-0.05, 3), '.', '.',
+                'gilles_psa_max'),\
+            (psa_all, psa_all, 'PSA', 'Predicted', None, '.', '-',
+                'gilles_psa_regression'):
         fig, ax = plt.subplots(figsize=(12, 12))
-        psa_proudlove.plot(y='PSA',
-                           color=c[0],
-                           style='.',
-                           legend=False,
-                           label='Dr. Proudlove',
-                           ax=ax)
-        psa_perry.plot(y='PSA',
-                       color=c[1],
-                       style='.',
-                       legend=False,
-                       label='Dr. Perry',
-                       ax=ax)
+        df1.plot(y=y1,
+                 color=c[0],
+                 style=g1,
+                 legend=False,
+                 label='Dr. Proudlove',
+                 ax=ax)
+        df2.plot(y=y2,
+                 color=c[1],
+                 style=g2,
+                 legend=False,
+                 label='Dr. Perry',
+                 ax=ax)
         despine(ax)
         ax.set_title(f'{title}\n{subtitle}')
         ax.set_ylabel(yaxislabel)
@@ -85,27 +90,5 @@ if __name__ == '__main__':
         ax.figure.savefig(f'{filename}.svg', format='svg')
         ax.figure.savefig(f'{filename}.png', format='png')
         ax.figure.savefig(f'{filename}.pdf', format='pdf')
-    fig, ax = plt.subplots(figsize=(12, 12))
-    psa_all, results, gregorian_predicted = psa_reg(psa_all)
-    psa_all.plot(y='PSA',
-                 color=c[2],
-                 style='.',
-                 legend=False,
-                 label=None,
-                 ax=ax)
-    psa_all.plot(y='Predicted',
-                 color=c[3],
-                 style=None,
-                 legend=False,
-                 label=None,
-                 ax=ax)
-    ax.set_title(f'{title}\n{subtitle}')
-    ax.set_ylabel(yaxislabel)
-    ax.set_xlabel(xaxislabel)
-    ax.autoscale(tight=False)
-    despine(ax)
-    ax.figure.savefig('gilles_psa_regression.svg', format='svg')
-    ax.figure.savefig('gilles_psa_regression.png', format='png')
-    ax.figure.savefig('gilles_psa_regression.pdf', format='pdf')
     print(f'My PSA will reach 3.0 on {gregorian_predicted}.'
           f'\n\n{results.summary()}')
