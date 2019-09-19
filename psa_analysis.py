@@ -51,11 +51,13 @@ if __name__ == '__main__':
         psa_proudlove.plot(y='PSA',
                            color=c[0],
                            style='.',
+                           legend=False,
                            label='Dr. Proudlove',
                            ax=ax)
         psa_perry.plot(y='PSA',
                        color=c[1],
                        style='.',
+                       legend=False,
                        label='Dr. Perry',
                        ax=ax)
         despine(ax)
