@@ -30,6 +30,18 @@ def despine(ax: axes.Axes) -> None:
         ax.spines[spine].set_color('none')
 
 
+def psa_reg(df):
+    df['Julian'] = df.index.to_julian_date()
+    results = smf.ols(formula='PSA ~ Julian', data=df).fit()
+    parameters = results.params
+    julian_predicted = (3.0 - parameters[0])/parameters[1]
+    gregorian_predicted = pd.to_datetime(julian_predicted, unit='D',
+                                         origin='julian').strftime('%Y-%m-%d')
+    df['Predicted'] = results.predict(df['Julian'])
+    df = df.drop(columns='Julian')
+    return df, results, gregorian_predicted
+
+
 if __name__ == '__main__':
     psa_proudlove = pd.read_csv('psa_proudlove.csv',
                                 parse_dates=True,
@@ -72,15 +84,8 @@ if __name__ == '__main__':
         ax.figure.savefig(f'{filename}.svg', format='svg')
         ax.figure.savefig(f'{filename}.png', format='png')
         ax.figure.savefig(f'{filename}.pdf', format='pdf')
-    psa_all['Julian'] = psa_all.index.to_julian_date()
-    results = smf.ols(formula='PSA ~ Julian', data=psa_all).fit()
-    parameters = results.params
-    julian_predicted = (3.0 - parameters[0])/parameters[1]
-    gregorian_predicted = pd.to_datetime(julian_predicted, unit='D',
-                                         origin='julian').strftime('%Y-%m-%d')
-    psa_all['Predicted'] = results.predict(psa_all['Julian'])
-    psa_all = psa_all.drop(columns='Julian')
     fig, ax = plt.subplots(figsize=(12, 12))
+    psa_all, results, gregorian_predicted = psa_reg(psa_all)
     psa_all.plot(y='PSA',
                  color=c[2],
                  style='.',
