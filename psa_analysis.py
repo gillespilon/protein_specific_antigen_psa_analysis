@@ -59,13 +59,15 @@ if __name__ == '__main__':
     yaxislabel = 'PSA (ng/mL)'
     xaxislabel = 'Date'
     psa_all, results, gregorian_predicted = psa_reg(psa_all)
-    for df1, df2, y1, y2, ylim, g1, g2, filename in \
-            (psa_proudlove, psa_perry, 'PSA', 'PSA', None, '.', '.',
-                'gilles_psa'),\
-            (psa_proudlove, psa_perry, 'PSA', 'PSA', (-0.05, 3), '.', '.',
-                'gilles_psa_max'),\
-            (psa_all, psa_all, 'PSA', 'Predicted', None, '.', '-',
-                'gilles_psa_regression'):
+    todo = [
+        (psa_proudlove, psa_perry, 'PSA', 'PSA', None, '.', '.',
+            'gilles_psa'),
+        (psa_proudlove, psa_perry, 'PSA', 'PSA', (-0.05, 3), '.', '.',
+            'gilles_psa_max'),
+        (psa_all, psa_all, 'PSA', 'Predicted', None, '.', '-',
+            'gilles_psa_regression')
+           ]
+    for df1, df2, y1, y2, ylim, g1, g2, filename in todo:
         fig, ax = plt.subplots(figsize=(12, 12))
         df1.plot(y=y1,
                  color=c[0],
