@@ -58,7 +58,9 @@ if __name__ == '__main__':
     subtitle = f'Gilles Pilon {max_date}'
     yaxislabel = 'PSA (ng/mL)'
     xaxislabel = 'Date'
-    for ylim, filename in (None, 'gilles_psa'), ((-0.05, 3), 'gilles_psa_max'):
+    for ylim, filename in \
+            (None, 'gilles_psa'),\
+            ((-0.05, 3), 'gilles_psa_max'):
         fig, ax = plt.subplots(figsize=(12, 12))
         psa_proudlove.plot(y='PSA',
                            color=c[0],
