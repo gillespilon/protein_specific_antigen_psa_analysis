@@ -30,7 +30,7 @@ def despine(ax: axes.Axes) -> None:
         ax.spines[spine].set_color('none')
 
 
-def psa_reg(df):
+def psa_reg(df: pd.DataFrame) -> pd.DataFrame:
     df['Julian'] = df.index.to_julian_date()
     results = smf.ols(formula='PSA ~ Julian', data=df).fit()
     parameters = results.params
