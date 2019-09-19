@@ -95,6 +95,7 @@ if __name__ == '__main__':
                  ax=ax)
     psa_all.plot(y='Predicted',
                  color=c[3],
+                 style=None,
                  legend=False,
                  label=None,
                  ax=ax)
