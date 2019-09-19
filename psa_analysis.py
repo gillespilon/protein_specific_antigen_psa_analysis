@@ -86,7 +86,10 @@ if __name__ == '__main__':
         ax.autoscale(tight=False)
         if ylim is not None:
             ax.set_ylim(*ylim)
-        ax.legend(loc='upper left', frameon=False)
+        if df1 is not psa_all:
+            ax.legend(loc='upper left', frameon=False)
+        else:
+            ax.get_legend().remove()
         ax.figure.savefig(f'{filename}.svg', format='svg')
         ax.figure.savefig(f'{filename}.png', format='png')
         ax.figure.savefig(f'{filename}.pdf', format='pdf')
