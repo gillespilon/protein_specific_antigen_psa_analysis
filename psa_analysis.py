@@ -76,7 +76,6 @@ if __name__ == '__main__':
         ax.set_title(f'{title}\n{subtitle}')
         ax.set_ylabel(yaxislabel)
         ax.set_xlabel(xaxislabel)
-        # Use autoscale to prevent points being clipped by the axes.
         ax.autoscale(tight=False)
         if ylim is not None:
             ax.set_ylim(*ylim)
@@ -100,7 +99,6 @@ if __name__ == '__main__':
     ax.set_title(f'{title}\n{subtitle}')
     ax.set_ylabel(yaxislabel)
     ax.set_xlabel(xaxislabel)
-    # Use autoscale to prevent points being clipped by the axes.
     ax.autoscale(tight=False)
     despine(ax)
     ax.figure.savefig('gilles_psa_regression.svg', format='svg')
