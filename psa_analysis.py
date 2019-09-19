@@ -72,13 +72,11 @@ if __name__ == '__main__':
         df1.plot(y=y1,
                  color=c[0],
                  style=g1,
-                 legend=False,
                  label='Dr. Proudlove',
                  ax=ax)
         df2.plot(y=y2,
                  color=c[1],
                  style=g2,
-                 legend=False,
                  label='Dr. Perry',
                  ax=ax)
         despine(ax)
