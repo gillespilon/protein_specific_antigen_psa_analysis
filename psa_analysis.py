@@ -16,6 +16,8 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib.axes as axes
 import statsmodels.formula.api as smf
+import statsmodels.regression.linear_model
+from typing import Tuple
 
 
 # https://matplotlib.org/tutorials/colors/colormaps.html
@@ -30,7 +32,10 @@ def despine(ax: axes.Axes) -> None:
         ax.spines[spine].set_color('none')
 
 
-def psa_reg(df: pd.DataFrame) -> pd.DataFrame:
+def psa_reg(df: pd.DataFrame) ->\
+        Tuple[pd.DataFrame,
+              statsmodels.regression.linear_model.RegressionResultsWrapper,
+              str]:
     df['Julian'] = df.index.to_julian_date()
     results = smf.ols(formula='PSA ~ Julian', data=df).fit()
     parameters = results.params
