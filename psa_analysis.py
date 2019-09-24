@@ -3,7 +3,12 @@
 '''
 Prostate-specific antigen (PSA) analysis
 
-time -f '%e' ./psa_analysis.py | tee psa_analysis.txt
+Plot PSA results for each doctor separately with and without warning limits.
+Plot PSA results and estimate a linear regression line, and calculate when
+the PSA will reach the warning limits.
+
+    time -f '%e' ./psa_analysis.py > psa_analysis.txt
+    time -f '%e' ./psa_analysis.py | tee psa_analysis.txt
 '''
 
 
