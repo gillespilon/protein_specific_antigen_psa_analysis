@@ -37,7 +37,7 @@ def despine(ax: axes.Axes) -> None:
     y axis, left and bottom, therefore there should only be these axes.
     '''
     for spine in 'right', 'top':
-        ax.spines[spine].set_color('none')
+        ax.spines[spine].set_visible(False)
 
 
 def psa_reg(df: pd.DataFrame) ->\
