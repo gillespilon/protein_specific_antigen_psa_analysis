@@ -33,8 +33,7 @@ def despine(ax: axes.Axes) -> None:
     '''
     Remove the top and right spines of a graph.
 
-    Used to enforce standard and *correct* style. There is only one x, and one
-    y axis, left and bottom, therefore there should only be these axes.
+    There is only one x axis, on the bottom, and one y axis, on the left.
     '''
     for spine in 'right', 'top':
         ax.spines[spine].set_visible(False)
