@@ -24,32 +24,7 @@ from typing import Tuple
 c = cm.Paired.colors  # c[0] c[1] ... c[11]
 
 
-def despine(ax: axes.Axes) -> None:
-    '''
-    Remove the top and right spines of a graph.
-
-    There is only one x axis, on the bottom, and one y axis, on the left.
-    '''
-    for spine in 'right', 'top':
-        ax.spines[spine].set_visible(False)
-
-
-def psa_reg(df: pd.DataFrame) ->\
-        Tuple[pd.DataFrame,
-              statsmodels.regression.linear_model.RegressionResultsWrapper,
-              str]:
-    df['Julian'] = df.index.to_julian_date()
-    results = smf.ols(formula='PSA ~ Julian', data=df).fit()
-    parameters = results.params
-    julian_predicted = (3.0 - parameters[0])/parameters[1]
-    gregorian_predicted = pd.to_datetime(julian_predicted, unit='D',
-                                         origin='julian').strftime('%Y-%m-%d')
-    df['Predicted'] = results.predict(df['Julian'])
-    df = df.drop(columns='Julian')
-    return df, results, gregorian_predicted
-
-
-if __name__ == '__main__':
+def main():
     psa_proudlove = pd.read_csv('psa_proudlove.csv',
                                 parse_dates=True,
                                 index_col='Date')
@@ -102,3 +77,32 @@ if __name__ == '__main__':
         ax.figure.savefig(f'{filename}.pdf', format='pdf')
     print(f'My PSA will reach 3.0 on {gregorian_predicted}.'
           f'\n\n{results.summary()}')
+
+
+def despine(ax: axes.Axes) -> None:
+    '''
+    Remove the top and right spines of a graph.
+
+    There is only one x axis, on the bottom, and one y axis, on the left.
+    '''
+    for spine in 'right', 'top':
+        ax.spines[spine].set_visible(False)
+
+
+def psa_reg(df: pd.DataFrame) ->\
+        Tuple[pd.DataFrame,
+              statsmodels.regression.linear_model.RegressionResultsWrapper,
+              str]:
+    df['Julian'] = df.index.to_julian_date()
+    results = smf.ols(formula='PSA ~ Julian', data=df).fit()
+    parameters = results.params
+    julian_predicted = (3.0 - parameters[0])/parameters[1]
+    gregorian_predicted = pd.to_datetime(julian_predicted, unit='D',
+                                         origin='julian').strftime('%Y-%m-%d')
+    df['Predicted'] = results.predict(df['Julian'])
+    df = df.drop(columns='Julian')
+    return df, results, gregorian_predicted
+
+
+if __name__ == '__main__':
+    main()
