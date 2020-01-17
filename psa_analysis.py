@@ -12,10 +12,6 @@ the PSA will reach the warning limits.
 '''
 
 
-# time -f '%e' ./psa_analysis.py > psa_analysis.txt
-# ./psa_analysis.py > psa_analysis.txt
-
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
