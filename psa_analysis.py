@@ -21,7 +21,6 @@ import statsmodels.regression.linear_model
 from typing import Tuple
 
 
-# https://matplotlib.org/tutorials/colors/colormaps.html
 c = cm.Paired.colors  # c[0] c[1] ... c[11]
 
 
