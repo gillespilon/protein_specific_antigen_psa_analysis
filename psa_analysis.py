@@ -55,7 +55,9 @@ def main():
         figure_width_height = (8, 6)
         fig = plt.figure(figsize=figure_width_height)
         ax = fig.add_subplot(111)
-        ax.plot(df1[x1], df1[y1], marker=g1, linestyle=g2, color=c[0], label='Dr. Proudlove')
+        ax.plot(df1[x1], df1[y1],
+                marker=g1, linestyle=g2, color=c[0],
+                label='Dr. Proudlove')
         ax.plot(df2[x2], df2[y2], marker=g1, linestyle=g2, color=c[1], label='Dr. Perry')
         despine(ax)
         ax.set_title(f'{axis_title}\n{axis_subtitle}')
