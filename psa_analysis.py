@@ -12,71 +12,65 @@ the PSA will reach the warning limits.
 '''
 
 
+import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
+import matplotlib
 import matplotlib.axes as axes
-import statsmodels.formula.api as smf
-import statsmodels.regression.linear_model
-from typing import Tuple
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+from matplotlib.dates import DateFormatter, MonthLocator
+from matplotlib.ticker import NullFormatter, NullLocator
 
 
-c = cm.Paired.colors  # c[0] c[1] ... c[11]
+matplotlib.use('Cairo')
+c = cm.Paired.colors
+pd.plotting.register_matplotlib_converters(explicit=True)
 
 
 def main():
     psa_proudlove = pd.read_csv('psa_proudlove.csv',
-                                parse_dates=True,
-                                index_col='Date')
+                                parse_dates=['Date'])
     psa_perry = pd.read_csv('psa_perry.csv',
-                            parse_dates=True,
-                            index_col='Date')
+                            parse_dates=['Date'])
     psa_all = pd.read_csv('psa_all.csv',
-                          parse_dates=True,
-                          index_col='Date')
-    title = 'Prosate-specific Antigen (PSA) Test'
-    max_date = max(psa_proudlove.index.max(),
-                   psa_perry.index.max()).date().isoformat()
-    subtitle = f'Gilles Pilon {max_date}'
-    yaxislabel = 'PSA (ng/mL)'
-    xaxislabel = 'Date'
-    psa_all, results, gregorian_predicted = psa_reg(psa_all)
+                          parse_dates=['Date'])
+    max_date = max(psa_proudlove['Date'].max(),
+                   psa_perry['Date'].max()).date().isoformat()
+    print(max_date)
+    x_axis_label, y_axis_label, axis_title, axis_subtitle =\
+        ('Date', 'PSA (ng/mL)', 'Prosate-specific Antigen (PSA) Test',
+         f'Gilles Pilon {max_date}')
+    psa_all = psa_reg(psa_all)
+    print(psa_all)
     todo = [
-        (psa_proudlove, psa_perry, 'PSA', 'PSA', None, '.', '.',
-            'gilles_psa'),
-        (psa_proudlove, psa_perry, 'PSA', 'PSA', (-0.05, 3), '.', '.',
-            'gilles_psa_max'),
-        (psa_all, psa_all, 'PSA', 'Predicted', None, '.', '-',
-            'gilles_psa_regression')
+        (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
+         None, '.', 'None', 'gilles_psa'),
+        (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
+         (-0.05, 3), '.', 'None', 'gilles_psa_max'),
+        (psa_all, psa_all, 'Date', 'Date', 'PSA', 'Predicted',
+         None, '.', '-', 'gilles_psa_regression')
            ]
-    for df1, df2, y1, y2, ylim, g1, g2, filename in todo:
-        fig, ax = plt.subplots(figsize=(12, 12))
-        df1.plot(y=y1,
-                 color=c[0],
-                 style=g1,
-                 label='Dr. Proudlove',
-                 ax=ax)
-        df2.plot(y=y2,
-                 color=c[1],
-                 style=g2,
-                 label='Dr. Perry',
-                 ax=ax)
+    for df1, df2, x1, x2, y1, y2, ylim, g1, g2, filename in todo:
+        figure_width_height = (8, 6)
+        fig = plt.figure(figsize=figure_width_height)
+        ax = fig.add_subplot(111)
+        ax.plot(df1[x1], df1[y1], marker=g1, linestyle=g2, color=c[0], label='Dr. Proudlove')
+        ax.plot(df2[x2], df2[y2], marker=g1, linestyle=g2, color=c[1], label='Dr. Perry')
         despine(ax)
-        ax.set_title(f'{title}\n{subtitle}')
-        ax.set_ylabel(yaxislabel)
-        ax.set_xlabel(xaxislabel)
+        ax.set_title(f'{axis_title}\n{axis_subtitle}')
+        ax.set_ylabel(y_axis_label)
+        ax.set_xlabel(x_axis_label)
         ax.autoscale(tight=False)
         if ylim is not None:
             ax.set_ylim(*ylim)
         if df1 is not psa_all:
             ax.legend(loc='upper left', frameon=False)
-        else:
-            ax.get_legend().remove()
         ax.figure.savefig(f'{filename}.svg', format='svg')
         ax.figure.savefig(f'{filename}.png', format='png')
         ax.figure.savefig(f'{filename}.pdf', format='pdf')
-    print(f'My PSA will reach 3.0 on {gregorian_predicted}.'
-          f'\n\n{results.summary()}')
+    # print(f'My PSA will reach 3.0 on {gregorian_predicted}.'
+    #       f'\n\n{results.summary()}')
 
 
 def despine(ax: axes.Axes) -> None:
@@ -89,19 +83,12 @@ def despine(ax: axes.Axes) -> None:
         ax.spines[spine].set_visible(False)
 
 
-def psa_reg(df: pd.DataFrame) ->\
-        Tuple[pd.DataFrame,
-              statsmodels.regression.linear_model.RegressionResultsWrapper,
-              str]:
-    df['Julian'] = df.index.to_julian_date()
-    results = smf.ols(formula='PSA ~ Julian', data=df).fit()
-    parameters = results.params
-    julian_predicted = (3.0 - parameters[0])/parameters[1]
-    gregorian_predicted = pd.to_datetime(julian_predicted, unit='D',
-                                         origin='julian').strftime('%Y-%m-%d')
-    df['Predicted'] = results.predict(df['Julian'])
-    df = df.drop(columns='Julian')
-    return df, results, gregorian_predicted
+def psa_reg(df: pd.DataFrame) -> pd.DataFrame:
+    df['DateDelta'] = (df['Date'] - df['Date'].min())/np.timedelta64(1, 'D')
+    model = sm.OLS(df['PSA'], sm.add_constant(df['DateDelta']),
+                   missing='drop').fit()
+    df['Predicted'] = model.fittedvalues
+    return df
 
 
 if __name__ == '__main__':
