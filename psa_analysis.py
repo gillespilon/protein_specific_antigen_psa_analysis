@@ -58,7 +58,9 @@ def main():
         ax.plot(df1[x1], df1[y1],
                 marker=g1, linestyle=g2, color=c[0],
                 label='Dr. Proudlove')
-        ax.plot(df2[x2], df2[y2], marker=g1, linestyle=g2, color=c[1], label='Dr. Perry')
+        ax.plot(df2[x2], df2[y2],
+                marker=g1, linestyle=g2, color=c[1],
+                label='Dr. Perry')
         despine(ax)
         ax.set_title(f'{axis_title}\n{axis_subtitle}')
         ax.set_ylabel(y_axis_label)
