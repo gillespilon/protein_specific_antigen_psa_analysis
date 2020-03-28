@@ -69,8 +69,6 @@ def main():
         ax.figure.savefig(f'{filename}.svg', format='svg')
         ax.figure.savefig(f'{filename}.png', format='png')
         ax.figure.savefig(f'{filename}.pdf', format='pdf')
-    # print(f'My PSA will reach 3.0 on {gregorian_predicted}.'
-    #       f'\n\n{results.summary()}')
 
 
 def despine(ax: axes.Axes) -> None:
