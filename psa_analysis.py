@@ -26,14 +26,13 @@ c = cm.Paired.colors
 
 
 def main():
-    psa_proudlove = pd.read_csv('psa_proudlove.csv',
-                                parse_dates=['Date'])
-    psa_perry = pd.read_csv('psa_perry.csv',
-                            parse_dates=['Date'])
-    psa_all = pd.read_csv('psa_all.csv',
-                          parse_dates=['Date'])
-    max_date = max(psa_proudlove['Date'].max(),
-                   psa_perry['Date'].max()).date().isoformat()
+    psa_proudlove = pd.read_csv('psa_proudlove.csv', parse_dates=['Date'])
+    psa_perry = pd.read_csv('psa_perry.csv', parse_dates=['Date'])
+    psa_all = pd.read_csv('psa_all.csv', parse_dates=['Date'])
+    max_date = max(
+        psa_proudlove['Date'].max(),
+        psa_perry['Date'].max()
+    ).date().isoformat()
     print(max_date)
     x_axis_label, y_axis_label, axis_title, axis_subtitle =\
         ('Date', 'PSA (ng/mL)', 'Prosate-specific Antigen (PSA) Test',
@@ -47,7 +46,7 @@ def main():
          (-0.05, 3), '.', 'None', 'gilles_psa_max'),
         (psa_all, psa_all, 'Date', 'Date', 'PSA', 'Predicted',
          None, '.', '-', 'gilles_psa_regression')
-           ]
+        ]
     for df1, df2, x1, x2, y1, y2, ylim, g1, g2, filename in todo:
         figure_width_height = (8, 6)
         fig = plt.figure(figsize=figure_width_height)
