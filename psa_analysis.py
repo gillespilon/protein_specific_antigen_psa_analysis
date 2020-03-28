@@ -83,8 +83,9 @@ def despine(ax: axes.Axes) -> None:
 
 def psa_reg(df: pd.DataFrame) -> pd.DataFrame:
     df['DateDelta'] = (df['Date'] - df['Date'].min())/np.timedelta64(1, 'D')
-    model = sm.OLS(df['PSA'], sm.add_constant(df['DateDelta']),
-                   missing='drop').fit()
+    model = sm.OLS(df['PSA'], sm.add_constant(
+        df['DateDelta']), missing='drop'
+    ).fit()
     df['Predicted'] = model.fittedvalues
     return df
 
