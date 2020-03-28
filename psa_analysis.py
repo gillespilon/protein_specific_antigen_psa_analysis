@@ -25,7 +25,6 @@ from matplotlib.ticker import NullFormatter, NullLocator
 
 matplotlib.use('Cairo')
 c = cm.Paired.colors
-pd.plotting.register_matplotlib_converters(explicit=True)
 
 
 def main():
