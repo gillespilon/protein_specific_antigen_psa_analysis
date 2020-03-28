@@ -14,7 +14,6 @@ the PSA will reach the warning limits.
 
 import numpy as np
 import pandas as pd
-import matplotlib
 import matplotlib.axes as axes
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
@@ -23,7 +22,6 @@ from matplotlib.dates import DateFormatter, MonthLocator
 from matplotlib.ticker import NullFormatter, NullLocator
 
 
-matplotlib.use('Cairo')
 c = cm.Paired.colors
 
 
