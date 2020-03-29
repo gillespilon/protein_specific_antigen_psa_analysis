@@ -32,8 +32,7 @@ x_axis_label, y_axis_label, axis_title =\
 
 def main():
     psa_proudlove, psa_perry, psa_all = read_data()
-    maximum_date = max_date(psa_proudlove, psa_perry)
-    axis_subtitle = f'Gilles Pilon {maximum_date}'
+    axis_subtitle = f'Gilles Pilon {max_date(psa_proudlove, psa_perry)}'
     psa_all = psa_reg(psa_all)
     todo = [
         (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
