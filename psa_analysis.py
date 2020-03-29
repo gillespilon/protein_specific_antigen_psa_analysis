@@ -26,14 +26,14 @@ c = cm.Paired.colors
 
 
 figure_width_height = (8, 6)
+x_axis_label, y_axis_label, axis_title =\
+    ('Date', 'PSA (ng/mL)', 'Prosate-specific Antigen (PSA) Test')
 
 
 def main():
     psa_proudlove, psa_perry, psa_all = read_data()
     maximum_date = max_date(psa_proudlove, psa_perry)
-    x_axis_label, y_axis_label, axis_title, axis_subtitle =\
-        ('Date', 'PSA (ng/mL)', 'Prosate-specific Antigen (PSA) Test',
-         f'Gilles Pilon {maximum_date}')
+    axis_subtitle = f'Gilles Pilon {maximum_date}'
     psa_all = psa_reg(psa_all)
     todo = [
         (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
@@ -44,24 +44,53 @@ def main():
          None, 'None', '-', 'gilles_psa_regression')
         ]
     for df1, df2, x1, x2, y1, y2, ylim, g1, g2, filename in todo:
-        fig = plt.figure(figsize=figure_width_height)
-        ax = fig.add_subplot(111)
-        ax.plot(df1[x1], df1[y1],
-                marker=g1, linestyle=g2, color=c[0],
-                label='Dr. Proudlove')
-        ax.plot(df2[x2], df2[y2],
-                marker=g1, linestyle=g2, color=c[1],
-                label='Dr. Perry')
-        despine(ax)
-        ax.set_title(f'{axis_title}\n{axis_subtitle}')
-        ax.set_ylabel(y_axis_label)
-        ax.set_xlabel(x_axis_label)
-        ax.autoscale(tight=False)
-        if ylim is not None:
-            ax.set_ylim(*ylim)
-        if df1 is not psa_all:
-            ax.legend(loc='upper left', frameon=False)
-        ax.figure.savefig(f'{filename}.svg', format='svg')
+        plot_line(df1, df2, x1, x2, y1, y2, ylim, g1, g2, axis_subtitle, filename, psa_all)
+        print(type(df1))
+        print(type(df1))
+        print(type(x1))
+        print(type(x2))
+        print(type(y1))
+        print(type(y2))
+        print(type(ylim))
+        print(type(g1))
+        print(type(g2))
+        print(type(axis_subtitle))
+        print(type(filename))
+        print(type(psa_all))
+
+
+def plot_line(
+    df1: pd.DataFrame,
+    df2: pd.DataFrame,
+    x1: str,
+    x2: str,
+    y1: str,
+    y2: str,
+    ylim: None,
+    g1: str,
+    g2: str,
+    axis_subtitle: str,
+    filename: str,
+    psa_all: pd.DataFrame
+) -> None:
+    fig = plt.figure(figsize=figure_width_height)
+    ax = fig.add_subplot(111)
+    ax.plot(df1[x1], df1[y1],
+            marker=g1, linestyle=g2, color=c[0],
+            label='Dr. Proudlove')
+    ax.plot(df2[x2], df2[y2],
+            marker=g1, linestyle=g2, color=c[1],
+            label='Dr. Perry')
+    despine(ax)
+    ax.set_title(f'{axis_title}\n{axis_subtitle}')
+    ax.set_ylabel(y_axis_label)
+    ax.set_xlabel(x_axis_label)
+    ax.autoscale(tight=False)
+    if ylim is not None:
+        ax.set_ylim(*ylim)
+    if df1 is not psa_all:
+        ax.legend(loc='upper left', frameon=False)
+    ax.figure.savefig(f'{filename}.svg', format='svg')
 
 
 def despine(ax: axes.Axes) -> None:
