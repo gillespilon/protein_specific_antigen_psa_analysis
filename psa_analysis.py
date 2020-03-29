@@ -44,19 +44,10 @@ def main():
          None, 'None', '-', 'gilles_psa_regression')
         ]
     for df1, df2, x1, x2, y1, y2, ylim, g1, g2, filename in todo:
-        plot_line(df1, df2, x1, x2, y1, y2, ylim, g1, g2, axis_subtitle, filename, psa_all)
-        print(type(df1))
-        print(type(df1))
-        print(type(x1))
-        print(type(x2))
-        print(type(y1))
-        print(type(y2))
-        print(type(ylim))
-        print(type(g1))
-        print(type(g2))
-        print(type(axis_subtitle))
-        print(type(filename))
-        print(type(psa_all))
+        plot_line(
+            df1, df2, x1, x2, y1, y2,
+            ylim, g1, g2, axis_subtitle, filename, psa_all
+        )
 
 
 def plot_line(
