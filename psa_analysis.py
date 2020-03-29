@@ -41,7 +41,7 @@ def main():
         (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
          (-0.05, 3), '.', 'None', 'gilles_psa_max'),
         (psa_all, psa_all, 'Date', 'Date', 'PSA', 'Predicted',
-         None, '.', '-', 'gilles_psa_regression')
+         None, 'None', '-', 'gilles_psa_regression')
         ]
     for df1, df2, x1, x2, y1, y2, ylim, g1, g2, filename in todo:
         fig = plt.figure(figsize=figure_width_height)
