@@ -30,14 +30,10 @@ c = cm.Paired.colors
 
 def main():
     psa_proudlove, psa_perry, psa_all = read_data()
-    max_date = max(
-        psa_proudlove['Date'].max(),
-        psa_perry['Date'].max()
-    ).date().isoformat()
-    print(max_date)
+    maximum_date = max_date(psa_proudlove, psa_perry)
     x_axis_label, y_axis_label, axis_title, axis_subtitle =\
         ('Date', 'PSA (ng/mL)', 'Prosate-specific Antigen (PSA) Test',
-         f'Gilles Pilon {max_date}')
+         f'Gilles Pilon {maximum_date}')
     psa_all = psa_reg(psa_all)
     print(psa_all)
     todo = [
@@ -89,6 +85,14 @@ def psa_reg(df: pd.DataFrame) -> pd.DataFrame:
     ).fit()
     df['Predicted'] = model.fittedvalues
     return df
+
+
+def max_date(df1: pd.DataFrame, df2: pd.DataFrame) -> str:
+    md = max(
+        df1['Date'].max(),
+        df2['Date'].max()
+    ).date().isoformat()
+    return md
 
 
 def read_data() -> Tuple[
