@@ -20,8 +20,6 @@ import matplotlib.axes as axes
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
-from matplotlib.dates import DateFormatter, MonthLocator
-from matplotlib.ticker import NullFormatter, NullLocator
 
 
 c = cm.Paired.colors
