@@ -12,6 +12,9 @@ the PSA will reach the warning limits.
 '''
 
 
+from typing import Tuple
+
+
 import numpy as np
 import pandas as pd
 import matplotlib.axes as axes
@@ -26,9 +29,7 @@ c = cm.Paired.colors
 
 
 def main():
-    psa_proudlove = pd.read_csv('psa_proudlove.csv', parse_dates=['Date'])
-    psa_perry = pd.read_csv('psa_perry.csv', parse_dates=['Date'])
-    psa_all = pd.read_csv('psa_all.csv', parse_dates=['Date'])
+    psa_proudlove, psa_perry, psa_all = read_data()
     max_date = max(
         psa_proudlove['Date'].max(),
         psa_perry['Date'].max()
@@ -88,6 +89,17 @@ def psa_reg(df: pd.DataFrame) -> pd.DataFrame:
     ).fit()
     df['Predicted'] = model.fittedvalues
     return df
+
+
+def read_data() -> Tuple[
+    pd.DataFrame,
+    pd.DataFrame,
+    pd.DataFrame
+]:
+    df1 = pd.read_csv('psa_proudlove.csv', parse_dates=['Date'])
+    df2 = pd.read_csv('psa_perry.csv', parse_dates=['Date'])
+    df3 = pd.read_csv('psa_all.csv', parse_dates=['Date'])
+    return (df1, df2, df3)
 
 
 if __name__ == '__main__':
