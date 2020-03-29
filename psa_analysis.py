@@ -25,6 +25,9 @@ import statsmodels.api as sm
 c = cm.Paired.colors
 
 
+figure_width_height = (8, 6)
+
+
 def main():
     psa_proudlove, psa_perry, psa_all = read_data()
     maximum_date = max_date(psa_proudlove, psa_perry)
@@ -41,7 +44,6 @@ def main():
          None, '.', '-', 'gilles_psa_regression')
         ]
     for df1, df2, x1, x2, y1, y2, ylim, g1, g2, filename in todo:
-        figure_width_height = (8, 6)
         fig = plt.figure(figsize=figure_width_height)
         ax = fig.add_subplot(111)
         ax.plot(df1[x1], df1[y1],
