@@ -62,8 +62,6 @@ def main():
         if df1 is not psa_all:
             ax.legend(loc='upper left', frameon=False)
         ax.figure.savefig(f'{filename}.svg', format='svg')
-        ax.figure.savefig(f'{filename}.png', format='png')
-        ax.figure.savefig(f'{filename}.pdf', format='pdf')
 
 
 def despine(ax: axes.Axes) -> None:
