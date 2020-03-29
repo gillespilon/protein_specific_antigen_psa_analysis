@@ -7,8 +7,7 @@ Plot PSA results for each doctor separately with and without warning limits.
 Plot PSA results and estimate a linear regression line, and calculate when
 the PSA will reach the warning limits.
 
-    time -f '%e' ./psa_analysis.py > psa_analysis.txt
-    time -f '%e' ./psa_analysis.py | tee psa_analysis.txt
+time -f '%e' ./psa_analysis.py
 '''
 
 
@@ -35,7 +34,6 @@ def main():
         ('Date', 'PSA (ng/mL)', 'Prosate-specific Antigen (PSA) Test',
          f'Gilles Pilon {maximum_date}')
     psa_all = psa_reg(psa_all)
-    print(psa_all)
     todo = [
         (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
          None, '.', 'None', 'gilles_psa'),
