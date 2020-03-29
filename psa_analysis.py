@@ -25,16 +25,6 @@ import statsmodels.api as sm
 c = cm.Paired.colors
 
 
-todo = [
-    (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
-     None, '.', 'None', 'gilles_psa'),
-    (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
-     (-0.05, 3), '.', 'None', 'gilles_psa_max'),
-    (psa_all, psa_all, 'Date', 'Date', 'PSA', 'Predicted',
-     None, '.', '-', 'gilles_psa_regression')
-    ]
-
-
 def main():
     psa_proudlove, psa_perry, psa_all = read_data()
     maximum_date = max_date(psa_proudlove, psa_perry)
@@ -42,6 +32,14 @@ def main():
         ('Date', 'PSA (ng/mL)', 'Prosate-specific Antigen (PSA) Test',
          f'Gilles Pilon {maximum_date}')
     psa_all = psa_reg(psa_all)
+    todo = [
+        (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
+         None, '.', 'None', 'gilles_psa'),
+        (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
+         (-0.05, 3), '.', 'None', 'gilles_psa_max'),
+        (psa_all, psa_all, 'Date', 'Date', 'PSA', 'Predicted',
+         None, '.', '-', 'gilles_psa_regression')
+        ]
     for df1, df2, x1, x2, y1, y2, ylim, g1, g2, filename in todo:
         figure_width_height = (8, 6)
         fig = plt.figure(figsize=figure_width_height)
