@@ -1,37 +1,38 @@
 #! /usr/bin/env python3
-
 '''
-Prostate-specific antigen (PSA) analysis
+Plot prostate-specific antigen (PSA) line plots.
 
 Plot PSA results for each doctor separately with and without warning limits.
 Plot PSA results and estimate a linear regression line, and calculate when
 the PSA will reach the warning limits.
 
 time -f '%e' ./psa_analysis.py
+./psa_analysis.py
 '''
-
 
 from typing import Tuple
 
-
-import numpy as np
-import pandas as pd
-import matplotlib.axes as axes
-import matplotlib.cm as cm
 import matplotlib.pyplot as plt
+import matplotlib.axes as axes
 import statsmodels.api as sm
-
+import matplotlib.cm as cm
+import pandas as pd
+import numpy as np
 
 c = cm.Paired.colors
-
-
 figure_width_height = (8, 6)
 x_axis_label, y_axis_label, axis_title =\
     ('Date', 'PSA (ng/mL)', 'Prosate-specific Antigen (PSA) Test')
+file_name_proudlove, file_name_perry, file_name_all =\
+    ('psa_proudlove.csv', 'psa_perry.csv', 'psa_all.csv')
 
 
 def main():
-    psa_proudlove, psa_perry, psa_all = read_data()
+    psa_proudlove, psa_perry, psa_all = read_data(
+        file_name_1=file_name_proudlove,
+        file_name_2=file_name_perry,
+        file_name_3=file_name_all
+    )
     axis_subtitle = f'Gilles Pilon {max_date(psa_proudlove, psa_perry)}'
     psa_all = psa_reg(psa_all)
     todo = [
@@ -100,15 +101,27 @@ def despine(ax: axes.Axes) -> None:
 
 
 def psa_reg(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Perform linear regression.
+    """
     df['DateDelta'] = (df['Date'] - df['Date'].min())/np.timedelta64(1, 'D')
-    model = sm.OLS(df['PSA'], sm.add_constant(
-        df['DateDelta']), missing='drop'
-    ).fit()
+    model = sm.OLS(
+        df['PSA'],
+        sm.add_constant(
+            df['DateDelta']),
+        missing='drop'
+        ).fit()
     df['Predicted'] = model.fittedvalues
     return df
 
 
-def max_date(df1: pd.DataFrame, df2: pd.DataFrame) -> str:
+def max_date(
+    df1: pd.DataFrame,
+    df2: pd.DataFrame
+) -> str:
+    """
+    Determine the maxium date in the dataframes.
+    """
     md = max(
         df1['Date'].max(),
         df2['Date'].max()
@@ -116,14 +129,30 @@ def max_date(df1: pd.DataFrame, df2: pd.DataFrame) -> str:
     return md
 
 
-def read_data() -> Tuple[
+def read_data(
+    file_name_1: str,
+    file_name_2: str,
+    file_name_3: str
+) -> Tuple[
     pd.DataFrame,
     pd.DataFrame,
     pd.DataFrame
 ]:
-    df1 = pd.read_csv('psa_proudlove.csv', parse_dates=['Date'])
-    df2 = pd.read_csv('psa_perry.csv', parse_dates=['Date'])
-    df3 = pd.read_csv('psa_all.csv', parse_dates=['Date'])
+    """
+    Read the three raw files into dataframes.
+    """
+    df1 = pd.read_csv(
+        file_name_1,
+        parse_dates=['Date']
+    )
+    df2 = pd.read_csv(
+        file_name_2,
+        parse_dates=['Date']
+    )
+    df3 = pd.read_csv(
+        file_name_3,
+        parse_dates=['Date']
+    )
     return (df1, df2, df3)
 
 
