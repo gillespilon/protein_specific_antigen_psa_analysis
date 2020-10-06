@@ -15,11 +15,9 @@ from typing import Tuple
 import matplotlib.pyplot as plt
 import matplotlib.axes as axes
 import statsmodels.api as sm
-import matplotlib.cm as cm
 import pandas as pd
 import numpy as np
 
-c = cm.Paired.colors
 figure_width_height = (8, 6)
 x_axis_label, y_axis_label, axis_title =\
     ('Date', 'PSA (ng/mL)', 'Prosate-specific Antigen (PSA) Test')
@@ -67,10 +65,10 @@ def plot_line(
     fig = plt.figure(figsize=figure_width_height)
     ax = fig.add_subplot(111)
     ax.plot(df1[x1], df1[y1],
-            marker=g1, linestyle=g2, color=c[0],
+            marker=g1, linestyle=g2, color='#0077bb',
             label='Dr. Proudlove')
     ax.plot(df2[x2], df2[y2],
-            marker=g1, linestyle=g2, color=c[1],
+            marker=g1, linestyle=g2, color='#33bbee',
             label='Dr. Perry')
     despine(ax)
     ax.set_title(f'{axis_title}\n{axis_subtitle}')
