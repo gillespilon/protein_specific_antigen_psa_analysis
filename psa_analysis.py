@@ -18,6 +18,8 @@ import statsmodels.api as sm
 import pandas as pd
 import numpy as np
 
+colour1 = '#0077bb'
+colour2 = '#33bbee'
 figure_width_height = (8, 6)
 x_axis_label, y_axis_label, axis_title =\
     ('Date', 'PSA (ng/mL)', 'Prosate-specific Antigen (PSA) Test')
@@ -65,10 +67,10 @@ def plot_line(
     fig = plt.figure(figsize=figure_width_height)
     ax = fig.add_subplot(111)
     ax.plot(df1[x1], df1[y1],
-            marker=g1, linestyle=g2, color='#0077bb',
+            marker=g1, linestyle=g2, color=colour1,
             label='Dr. Proudlove')
     ax.plot(df2[x2], df2[y2],
-            marker=g1, linestyle=g2, color='#33bbee',
+            marker=g1, linestyle=g2, color=colour2,
             label='Dr. Perry')
     despine(ax)
     ax.set_title(f'{axis_title}\n{axis_subtitle}')
