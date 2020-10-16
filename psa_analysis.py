@@ -81,7 +81,7 @@ def plot_line(
         ax.set_ylim(*ylim)
     if df1 is not psa_all:
         ax.legend(loc='upper left', frameon=False)
-    ax.figure.savefig(f'{filename}.svg', format='svg')
+    fig.savefig(f'{filename}.svg', format='svg')
 
 
 def despine(ax: axes.Axes) -> None:
