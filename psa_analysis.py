@@ -72,7 +72,7 @@ def plot_line(
     ax.plot(df2[x2], df2[y2],
             marker=g1, linestyle=g2, color=colour2,
             label='Dr. Perry')
-    despine(ax)
+    ds.despine(ax)
     ax.set_title(f'{axis_title}\n{axis_subtitle}')
     ax.set_ylabel(y_axis_label)
     ax.set_xlabel(x_axis_label)
@@ -85,22 +85,6 @@ def plot_line(
         fname=f'{filename}.svg',
         format='svg'
     )
-
-
-def despine(ax: axes.Axes) -> None:
-    """
-    Remove the top and right spines of a graph.
-
-    Parameters
-    ----------
-    ax : axes.Axes
-
-    Example
-    -------
-    >>> despine(ax)
-    """
-    for spine in 'right', 'top':
-        ax.spines[spine].set_visible(False)
 
 
 def psa_reg(df: pd.DataFrame) -> pd.DataFrame:
