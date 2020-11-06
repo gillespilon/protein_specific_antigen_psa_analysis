@@ -75,7 +75,7 @@ def plot_line(
     ds.despine(ax)
     ax.set_title(f'{axis_title}\n{axis_subtitle}')
     ax.set_ylabel(y_axis_label)
-    ax.set_xlabel(x_axis_label)
+    ax.set_xlabel(xlabel=x_axis_label)
     ax.autoscale(tight=False)
     if ylim is not None:
         ax.set_ylim(*ylim)
