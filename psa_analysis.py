@@ -73,7 +73,7 @@ def plot_line(
             marker=g1, linestyle=g2, color=colour2,
             label='Dr. Perry')
     ds.despine(ax)
-    ax.set_title(f'{axis_title}\n{axis_subtitle}')
+    ax.set_title(label=f'{axis_title}\n{axis_subtitle}')
     ax.set_ylabel(ylabel=y_axis_label)
     ax.set_xlabel(xlabel=x_axis_label)
     ax.autoscale(tight=False)
