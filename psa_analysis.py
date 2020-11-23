@@ -15,6 +15,7 @@ from typing import Tuple
 import matplotlib.pyplot as plt
 import matplotlib.axes as axes
 import statsmodels.api as sm
+import datasense as ds
 import pandas as pd
 import numpy as np
 
