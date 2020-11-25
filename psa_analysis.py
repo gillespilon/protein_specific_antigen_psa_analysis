@@ -11,9 +11,9 @@ time -f '%e' ./psa_analysis.py
 '''
 
 from typing import Tuple
+import time
 
 import matplotlib.pyplot as plt
-import matplotlib.axes as axes
 import statsmodels.api as sm
 import datasense as ds
 import pandas as pd
@@ -21,7 +21,10 @@ import numpy as np
 
 colour1 = '#0077bb'
 colour2 = '#33bbee'
-figure_width_height = (8, 6)
+figsize = (8, 6)
+output_url = 'psa_analysis.html'
+header_title = 'PSA analysis'
+header_id = 'psa-analysis'
 x_axis_label, y_axis_label, axis_title =\
     ('Date', 'PSA (ng/mL)', 'Prosate-specific Antigen (PSA) Test')
 file_name_proudlove, file_name_perry, file_name_all =\
@@ -29,6 +32,12 @@ file_name_proudlove, file_name_perry, file_name_all =\
 
 
 def main():
+    start_time = time.time()
+    original_stdout = ds.html_begin(
+        output_url=output_url,
+        header_title=header_title,
+        header_id=header_id
+    )
     psa_proudlove, psa_perry, psa_all = read_data(
         file_name_1=file_name_proudlove,
         file_name_2=file_name_perry,
@@ -49,6 +58,16 @@ def main():
             df1, df2, x1, x2, y1, y2,
             ylim, g1, g2, axis_subtitle, filename, psa_all
         )
+    stop_time = time.time()
+    ds.page_break()
+    ds.report_summary(
+        start_time=start_time,
+        stop_time=stop_time
+    )
+    ds.html_end(
+        original_stdout=original_stdout,
+        output_url=output_url
+    )
 
 
 def plot_line(
@@ -65,7 +84,7 @@ def plot_line(
     filename: str,
     psa_all: pd.DataFrame
 ) -> None:
-    fig = plt.figure(figsize=figure_width_height)
+    fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     ax.plot(df1[x1], df1[y1],
             marker=g1, linestyle=g2, color=colour1,
@@ -86,6 +105,7 @@ def plot_line(
         fname=f'{filename}.svg',
         format='svg'
     )
+    ds.html_figure(file_name=f'{filename}.svg')
 
 
 def psa_reg(df: pd.DataFrame) -> pd.DataFrame:
