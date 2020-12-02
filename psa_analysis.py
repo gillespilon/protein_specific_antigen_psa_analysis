@@ -131,7 +131,7 @@ def max_date(
     df2: pd.DataFrame
 ) -> str:
     """
-    Determine the maxium date in the dataframes.
+    Determine the maximum date in the dataframes.
     """
     md = max(
         df1['Date'].max(),
