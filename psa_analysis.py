@@ -105,6 +105,10 @@ def plot_line(
         fname=f'{filename}.svg',
         format='svg'
     )
+    # print(
+    #     f'My PSA will reach 3.0 on {gregorian_predicted}.'
+    #     f'\n\n{results.summary()}'
+    # )
     ds.html_figure(file_name=f'{filename}.svg')
 
 
@@ -115,10 +119,9 @@ def psa_reg(df: pd.DataFrame) -> pd.DataFrame:
     df['DateDelta'] = (df['Date'] - df['Date'].min())/np.timedelta64(1, 'D')
     model = sm.OLS(
         df['PSA'],
-        sm.add_constant(
-            df['DateDelta']),
+        sm.add_constant(df['DateDelta']),
         missing='drop'
-        ).fit()
+    ).fit()
     df['Predicted'] = model.fittedvalues
     return df
 
