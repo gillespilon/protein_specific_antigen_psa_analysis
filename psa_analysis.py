@@ -44,7 +44,7 @@ def main():
         file_name_3=file_name_all
     )
     axis_subtitle = f'Gilles Pilon {max_date(psa_proudlove, psa_perry)}'
-    psa_all = psa_reg(psa_all)
+    psa_all, model = psa_reg(psa_all)
     todo = [
         (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
          None, '.', 'None', 'gilles_psa'),
@@ -62,7 +62,7 @@ def main():
     ds.page_break()
     ds.report_summary(
         start_time=start_time,
-        stop_time=stop_time
+        stop_time=stop_time,
     )
     ds.html_end(
         original_stdout=original_stdout,
@@ -108,7 +108,10 @@ def plot_line(
     ds.html_figure(file_name=f'{filename}.svg')
 
 
-def psa_reg(df: pd.DataFrame) -> pd.DataFrame:
+def psa_reg(df: pd.DataFrame) -> Tuple[
+    pd.DataFrame,
+    sm.regression.linear_model.RegressionResultsWrapper
+]:
     """
     Perform linear regression.
     """
@@ -121,7 +124,7 @@ def psa_reg(df: pd.DataFrame) -> pd.DataFrame:
         missing='drop'
     ).fit()
     df['Predicted'] = model.fittedvalues
-    return df
+    return df, model
 
 
 def max_date(
