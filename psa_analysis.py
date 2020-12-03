@@ -63,6 +63,7 @@ def main():
     ds.report_summary(
         start_time=start_time,
         stop_time=stop_time,
+        read_file_names=['psa_proudlove.csv', 'psa_perry.csv', 'psa_all.csv']
     )
     ds.html_end(
         original_stdout=original_stdout,
