@@ -65,6 +65,8 @@ def main():
         stop_time=stop_time,
         read_file_names=['psa_proudlove.csv', 'psa_perry.csv', 'psa_all.csv']
     )
+    print()
+    print(model.summary())
     ds.html_end(
         original_stdout=original_stdout,
         output_url=output_url
