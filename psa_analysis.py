@@ -66,7 +66,17 @@ def main():
         read_file_names=['psa_proudlove.csv', 'psa_perry.csv', 'psa_all.csv']
     )
     print()
+    parameters = model.params
+    print(parameters)
+    print()
+    print('summary()')
     print(model.summary())
+    print()
+    print('summary2()')
+    print(model.summary2())
+    print()
+    print('df')
+    print(psa_all)
     ds.html_end(
         original_stdout=original_stdout,
         output_url=output_url
