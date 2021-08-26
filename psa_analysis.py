@@ -25,6 +25,29 @@ trial of 6,630 mean."
 *The Journal of Urology* 151 (May 1994), no. 5: 1283-90.
 [PMID 7512659 (https://www.ncbi.nlm.nih.gov/pubmed/7512659)]
 (https://www.ncbi.nlm.nih.gov/pubmed/7512659).
+
+Prostate-specific antigen (PSA) is produced for the ejaculate, where it
+liquifies the semen in the seminal coagulum and allows sperm to swim freely
+(Balk et.al. 2003). PSA is present in small quantities in the serum of men with
+healthy prostates, but is often elevated in the presence of prostate cancer or
+other prostate disorders (Catalona et.al. 1994).
+
+I was diagnosed with prostate cancer on 2013-03-08. I had a radical
+prostatectomy on 2013-06-11 and 30 radiation treatments from 2013-09-13 to
+2013-10-18.
+
+From an initial PSA test immediately after the last radiation treatment and
+every six months since, I have recorded the date, results, and consulting
+physician. These results are analysed in this Jupyter notebook.
+
+This Jupyter Notebook creates three scatter plots:
+
+PSA v. Date, using the full range of the data to set the y axis limits.
+PSA v. Date, using the trigger point of 3.0 to set the y axis limits.
+This upper limit is the point at which the doctors said I would need further
+treatment if my PSA results were to reach this value.
+PSA v. Date, using the full range of the data to set the y axis limits, and a
+linear regression line fitted to the data.
 '''
 
 from typing import Tuple
