@@ -89,7 +89,7 @@ def main():
         (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
          None, '.', 'None', 'gilles_psa'),
         (psa_proudlove, psa_perry, 'Date', 'Date', 'PSA', 'PSA',
-         (-0.05, 3), '.', 'None', 'gilles_psa_max'),
+         (-0.05, 20), '.', 'None', 'gilles_psa_max'),
         (psa_all, psa_all, 'Date', 'Date', 'PSA', 'Predicted',
          None, 'None', '-', 'gilles_psa_regression')
         ]
