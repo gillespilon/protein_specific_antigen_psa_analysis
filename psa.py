@@ -51,6 +51,14 @@ def main():
     x_axis_label = 'Date'
     figsize = (8, 6)
     path_data = Path('psa.csv')
+    # read data
+    df = ds.read_file(
+        file_name=path_data
+    )
+    ds.dataframe_info(
+        df=df,
+        file_in=path_data
+    )
 
 
 if __name__ == '__main__':
