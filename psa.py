@@ -34,6 +34,8 @@ every test since, I have recorded the date, results, and consulting
 physician.
 """
 
+from datetime import datetime
+from typing import Callable
 from pathlib import Path
 import time
 
@@ -42,23 +44,23 @@ import pandas as pd
 
 
 def main():
+    # set parameters
     axis_title = 'Prostate-specific Antigen (PSA) Test'
     header_title = 'PSA analysis'
     y_axis_label = 'PSA (ng/mL)'
+    path_data = Path('psa.csv')
     header_id = 'psa-analysis'
     output_url = 'psa.html'
     date_column = ['Date']
     x_axis_label = 'Date'
     figsize = (8, 6)
-    path_data = Path('psa.csv')
     # read data
     df = ds.read_file(
-        file_name=path_data
+        file_name=path_data,
+        parse_dates=date_column,
     )
-    ds.dataframe_info(
-        df=df,
-        file_in=path_data
-    )
+    # create graph
+    # save graph
 
 
 if __name__ == '__main__':
