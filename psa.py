@@ -35,20 +35,20 @@ physician.
 """
 
 from pathlib import Path
-import time
 
 import datasense as ds
 import pandas as pd
+import numpy as np
 
 
 def main():
     # set parameters
     axis_title = 'Prostate-specific Antigen (PSA) Test'
-    header_title = 'PSA analysis'
+    # header_title = 'PSA analysis'
     y_axis_label = 'PSA (ng/mL)'
     path_data = Path('psa.csv')
-    header_id = 'psa-analysis'
-    output_url = 'psa.html'
+    # header_id = 'psa-analysis'
+    # output_url = 'psa.html'
     date_column = ['Date']
     x_axis_label = 'Date'
     figsize = (8, 6)
@@ -57,17 +57,34 @@ def main():
         file_name=path_data,
         parse_dates=date_column,
     )
+    series_x = df['Date']
+    series_y = df['PSA']
     # create graph
     fig, ax = ds.plot_scatter_x_y(
-        X=df['Date'],
-        y=df['PSA'],
+        X=series_x,
+        y=series_y,
         figsize=figsize
     )
+    ds.despine(ax)
+    ax.set_title(label=f'{axis_title}\n{max_date(s=series_x)}')
+    ax.set_ylabel(ylabel=y_axis_label)
+    ax.set_xlabel(xlabel=x_axis_label)
+    ax.autoscale(tight=False)
+    ax.set_yticks(np.arange(min(series_y), max(series_y)+2, 2))
+    ax.grid(axis='y', alpha=0.2)
     # save graph
     fig.savefig(
         fname='psa.svg',
         format='svg'
     )
+
+
+def max_date(s: pd.Series) -> str:
+    """
+    Determine the maximum date in the Series.
+    """
+    md = s.max().date().isoformat()
+    return md
 
 
 if __name__ == '__main__':
