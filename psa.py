@@ -34,8 +34,6 @@ every test since, I have recorded the date, results, and consulting
 physician.
 """
 
-from datetime import datetime
-from typing import Callable
 from pathlib import Path
 import time
 
@@ -60,7 +58,16 @@ def main():
         parse_dates=date_column,
     )
     # create graph
+    fig, ax = ds.plot_scatter_x_y(
+        X=df['Date'],
+        y=df['PSA'],
+        figsize=figsize
+    )
     # save graph
+    fig.savefig(
+        fname='psa.svg',
+        format='svg'
+    )
 
 
 if __name__ == '__main__':
