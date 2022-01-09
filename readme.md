@@ -6,6 +6,8 @@ Prostate-specific antigen (PSA) is produced for the ejaculate, where it liquifie
 
 This script creates a scatter plot of PSA v. Date.
 
+![psa.svg](psa.svg)
+
 ## References
 
 Balk, S.P. Y.J. Ko, and G.J. Bubley. "Biology of prosate-specific antigen." *Journal of Clinical Oncology* 21 (January 2003), no. 2: 383-91. [PMID 12525533 (https://www.ncbi.nlm.nih.gov/pubmed/12525533)](https://www.ncbi.nlm.nih.gov/pubmed/12525533). [doi:10.1200/JCO.2003.02.083 (https://doi.org/10.1200 2FJCO.2003.02.083)](https://doi.org/10.1200/JCO.2003.02.083).
