@@ -27,7 +27,8 @@ other prostate disorders (Catalona et.al. 1994).
 
 I was diagnosed with prostate cancer on 2013-03-08. I had a radical
 prostatectomy on 2013-06-11 and 30 radiation treatments from 2013-09-13 to
-2013-10-18.
+2013-10-18. My cancer returned in late 2020 and convirmed in late 2021. I am
+undergoing antigen treatments.
 
 From an initial PSA test immediately after the last radiation treatment and
 every test since, I have recorded the date, results, and consulting
@@ -37,55 +38,29 @@ physician.
 from pathlib import Path
 
 import datasense as ds
-import pandas as pd
 import numpy as np
 
 
 def main():
-    # set parameters
-    axis_title = 'Prostate-specific Antigen (PSA) Test'
-    # header_title = 'PSA analysis'
-    y_axis_label = 'PSA (ng/mL)'
-    path_data = Path('psa.csv')
-    # header_id = 'psa-analysis'
-    # output_url = 'psa.html'
-    date_column = ['Date']
-    x_axis_label = 'Date'
-    figsize = (8, 6)
-    # read data
-    df = ds.read_file(
-        file_name=path_data,
-        parse_dates=date_column,
-    )
-    series_x = df['Date']
-    series_y = df['PSA']
-    # create graph
-    fig, ax = ds.plot_scatter_x_y(
-        X=series_x,
-        y=series_y,
-        figsize=figsize
-    )
-    ds.despine(ax)
-    ax.set_title(label=f'{axis_title}\n{max_date(s=series_x)}')
-    ax.set_ylabel(ylabel=y_axis_label)
-    ax.set_xlabel(xlabel=x_axis_label)
-    ax.autoscale(tight=False)
-    ax.set_yticks(np.arange(min(series_y), max(series_y)+2, 2))
-    ax.grid(axis='y', alpha=0.2)
-    # save graph
-    fig.savefig(
-        fname='psa.svg',
-        format='svg'
-    )
+    ax_title = "Prostate-specific Antigen (PSA) Test"
+    path_graph = Path("psa.svg")
+    path_data = Path("psa.csv")
+    ax_ylabel = "PSA (ng/mL)"
+    date_column = ["Date"]
+    ax_xlabel = "Date"
+    grid_alpha = 0.1
+    ds.style_graph()
+    df = ds.read_file(file_name=path_data, parse_dates=date_column)
+    x = df["Date"]
+    y = df["PSA"]
+    fig, ax = ds.plot_scatter_x_y(X=x, y=y,)
+    ax.set_yticks(ticks=np.arange(start=min(y), stop=max(y)+2, step=2))
+    ax.grid(visible=True, which="major", axis="y", alpha=grid_alpha)
+    ax.set_title(label=f"{ax_title}\n{x.max().date().isoformat()}")
+    ax.set_ylabel(ylabel=ax_ylabel)
+    ax.set_xlabel(xlabel=ax_xlabel)
+    fig.savefig(fname=path_graph, format="svg")
 
 
-def max_date(s: pd.Series) -> str:
-    """
-    Determine the maximum date in the Series.
-    """
-    md = s.max().date().isoformat()
-    return md
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
