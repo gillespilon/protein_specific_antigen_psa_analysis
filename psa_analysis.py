@@ -139,13 +139,15 @@ def plot_line(
 ) -> None:
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
-    ax.plot(df1[x1], df1[y1],
-            marker=g1, linestyle=g2, color=colour1,
-            label='Dr. Proudlove')
-    ax.plot(df2[x2], df2[y2],
-            marker=g1, linestyle=g2, color=colour2,
-            label='Dr. Perry')
-    ds.despine(ax)
+    ax.plot(
+        df1[x1], df1[y1], marker=g1, linestyle=g2, color=colour1,
+        label='Dr. Proudlove'
+    )
+    ax.plot(
+        df2[x2], df2[y2], marker=g1, linestyle=g2, color=colour2,
+        label='Dr. Perry'
+    )
+    ds.despine(ax=ax)
     ax.set_title(label=f'{axis_title}\n{axis_subtitle}')
     ax.set_ylabel(ylabel=y_axis_label)
     ax.set_xlabel(xlabel=x_axis_label)
@@ -154,10 +156,7 @@ def plot_line(
         ax.set_ylim(*ylim)
     if df1 is not psa_all:
         ax.legend(loc='upper left', frameon=False)
-    fig.savefig(
-        fname=f'{filename}.svg',
-        format='svg'
-    )
+    fig.savefig(fname=f'{filename}.svg', format='svg')
     ds.html_figure(file_name=f'{filename}.svg')
 
 
@@ -171,11 +170,7 @@ def psa_reg(df: pd.DataFrame) -> Tuple[
     df['DateDelta'] = (df['Date'] - df['Date'].min())/np.timedelta64(1, 'D')
     x = sm.add_constant(df['DateDelta'])
     y = df['PSA']
-    model = sm.OLS(
-        endog=y,
-        exog=x,
-        missing='drop'
-    ).fit()
+    model = sm.OLS(endog=y, exog=x, missing='drop').fit()
     df['Predicted'] = model.fittedvalues
     return df, model
 
@@ -187,10 +182,7 @@ def max_date(
     """
     Determine the maximum date in the dataframes.
     """
-    md = max(
-        df1['Date'].max(),
-        df2['Date'].max()
-    ).date().isoformat()
+    md = max(df1['Date'].max(), df2['Date'].max()).date().isoformat()
     return md
 
 
@@ -206,18 +198,9 @@ def read_data(
     """
     Read the three raw files into dataframes.
     """
-    df1 = pd.read_csv(
-        file_name_1,
-        parse_dates=['Date']
-    )
-    df2 = pd.read_csv(
-        file_name_2,
-        parse_dates=['Date']
-    )
-    df3 = pd.read_csv(
-        file_name_3,
-        parse_dates=['Date']
-    )
+    df1 = pd.read_csv(file_name_1, parse_dates=['Date'])
+    df2 = pd.read_csv(file_name_2, parse_dates=['Date'])
+    df3 = pd.read_csv(file_name_3, parse_dates=['Date'])
     return (df1, df2, df3)
 
 
