@@ -50,7 +50,7 @@ PSA v. Date, using the full range of the data to set the y axis limits, and a
 linear regression line fitted to the data.
 '''
 
-from typing import Tuple
+from typing import NoReturn, Tuple
 import time
 
 import matplotlib.pyplot as plt
@@ -136,7 +136,7 @@ def plot_line(
     axis_subtitle: str,
     filename: str,
     psa_all: pd.DataFrame
-) -> None:
+) -> NoReturn:
     fig = plt.figure(figsize=figsize)
     ax = fig.add_subplot(111)
     ax.plot(
