@@ -48,12 +48,13 @@ def main():
     ax_ylabel = "PSA (ng/mL)"
     date_column = ["Date"]
     ax_xlabel = "Date"
+    figsize = (12, 9)
     grid_alpha = 0.1
     ds.style_graph()
     df = ds.read_file(file_name=path_data, parse_dates=date_column)
     x = df["Date"]
     y = df["PSA"]
-    fig, ax = ds.plot_scatter_x_y(X=x, y=y,)
+    fig, ax = ds.plot_scatter_x_y(X=x, y=y, figsize=figsize)
     ax.set_yticks(ticks=np.arange(start=min(y), stop=max(y)+2, step=2))
     ax.grid(visible=True, which="major", axis="y", alpha=grid_alpha)
     ax.set_title(label=f"{ax_title}\n{x.max().date().isoformat()}")
