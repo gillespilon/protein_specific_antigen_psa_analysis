@@ -43,7 +43,8 @@ import numpy as np
 
 def main():
     ax_title = "Prostate-specific Antigen (PSA) Test"
-    path_graph = Path("psa.svg")
+    path_graph_svg = Path("psa.svg")
+    path_graph_png = Path("psa.png")
     path_data = Path("psa.csv")
     ax_ylabel = "PSA (ng/mL)"
     date_column = ["Date"]
@@ -60,7 +61,8 @@ def main():
     ax.set_title(label=f"{ax_title}\n{x.max().date().isoformat()}")
     ax.set_ylabel(ylabel=ax_ylabel)
     ax.set_xlabel(xlabel=ax_xlabel)
-    fig.savefig(fname=path_graph, format="svg")
+    fig.savefig(fname=path_graph_svg, format="svg")
+    fig.savefig(fname=path_graph_png, format="png")
 
 
 if __name__ == "__main__":
