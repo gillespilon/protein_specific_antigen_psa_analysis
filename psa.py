@@ -47,22 +47,47 @@ def main():
     path_graph_png = Path("psa.png")
     path_data = Path("psa.csv")
     ax_ylabel = "PSA (ng/mL)"
-    date_column = ["Date"]
     ax_xlabel = "Date"
+    x_column = "Date"
     figsize = (12, 9)
     grid_alpha = 0.1
+    y_column = "PSA"
     ds.style_graph()
-    df = ds.read_file(file_name=path_data, parse_dates=date_column)
-    x = df["Date"]
-    y = df["PSA"]
-    fig, ax = ds.plot_scatter_x_y(X=x, y=y, figsize=figsize)
-    ax.set_yticks(ticks=np.arange(start=min(y), stop=max(y)+2, step=2))
-    ax.grid(visible=True, which="major", axis="y", alpha=grid_alpha)
+    df = ds.read_file(
+        file_name=path_data,
+        parse_dates=[x_column]
+    )
+    x = df[x_column]
+    y = df[y_column]
+    fig, ax = ds.plot_scatter_x_y(
+        X=x,
+        y=y,
+        figsize=figsize
+    )
+    ax.set_yticks(
+        ticks=np.arange(
+            start=min(y),
+            stop=max(y)+2,
+            step=2
+        )
+    )
+    ax.grid(
+        visible=True,
+        which="major",
+        axis="y",
+        alpha=grid_alpha
+    )
     ax.set_title(label=f"{ax_title}\n{x.max().date().isoformat()}")
     ax.set_ylabel(ylabel=ax_ylabel)
     ax.set_xlabel(xlabel=ax_xlabel)
-    fig.savefig(fname=path_graph_svg, format="svg")
-    fig.savefig(fname=path_graph_png, format="png")
+    fig.savefig(
+        fname=path_graph_svg,
+        format="svg"
+    )
+    fig.savefig(
+        fname=path_graph_png,
+        format="png"
+    )
 
 
 if __name__ == "__main__":
