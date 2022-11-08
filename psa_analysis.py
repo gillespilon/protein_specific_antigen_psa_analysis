@@ -137,8 +137,11 @@ def plot_line(
     filename: str,
     psa_all: pd.DataFrame
 ) -> NoReturn:
-    fig = plt.figure(figsize=figsize)
-    ax = fig.add_subplot(111)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=figsize
+    )
     ax.plot(
         df1[x1], df1[y1], marker=g1, linestyle=g2, color=colour1,
         label='Dr. Proudlove'
