@@ -171,7 +171,7 @@ def psa_reg(df: pd.DataFrame) -> Tuple[
     Perform linear regression.
     """
     df['DateDelta'] = (df['Date'] - df['Date'].min())/np.timedelta64(1, 'D')
-    x = sm.add_constant(df['DateDelta'])
+    x = sm.add_constant(data=df['DateDelta'])
     y = df['PSA']
     model = sm.OLS(endog=y, exog=x, missing='drop').fit()
     df['Predicted'] = model.fittedvalues
