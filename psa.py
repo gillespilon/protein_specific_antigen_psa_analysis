@@ -42,27 +42,27 @@ import numpy as np
 
 
 def main():
-    ax_title = "Prostate-specific Antigen (PSA) Test"
-    path_graph_svg = Path("psa.svg")
-    path_graph_png = Path("psa.png")
-    path_data = Path("psa.csv")
-    ax_ylabel = "PSA (ng/mL)"
-    ax_xlabel = "Date"
-    x_column = "Date"
-    figsize = (12, 9)
-    grid_alpha = 0.1
-    y_column = "PSA"
+    AX_TITLE = "Prostate-specific Antigen (PSA) Test"
+    PATH_GRAPH_SVG = Path("psa.svg")
+    PATH_GRAPH_PNG = Path("psa.png")
+    PATH_DATA = Path("psa.csv")
+    AX_YLABEL = "PSA (ng/mL)"
+    AX_XLABEL = "Date"
+    X_COLUMN = "Date"
+    FIGSIZE = (12, 9)
+    GRID_ALPHA = 0.1
+    Y_COLUMN = "PSA"
     ds.style_graph()
     df = ds.read_file(
-        file_name=path_data,
-        parse_dates=[x_column]
+        file_name=PATH_DATA,
+        parse_dates=[X_COLUMN]
     )
-    x = df[x_column]
-    y = df[y_column]
+    x = df[X_COLUMN]
+    y = df[Y_COLUMN]
     fig, ax = ds.plot_scatter_x_y(
         X=x,
         y=y,
-        figsize=figsize
+        figsize=FIGSIZE
     )
     ax.set_yticks(
         ticks=np.arange(
@@ -75,17 +75,17 @@ def main():
         visible=True,
         which="major",
         axis="y",
-        alpha=grid_alpha
+        alpha=GRID_ALPHA
     )
-    ax.set_title(label=f"{ax_title}\n{x.max().date().isoformat()}")
-    ax.set_ylabel(ylabel=ax_ylabel)
-    ax.set_xlabel(xlabel=ax_xlabel)
+    ax.set_title(label=f"{AX_TITLE}\n{x.max().date().isoformat()}")
+    ax.set_ylabel(ylabel=AX_YLABEL)
+    ax.set_xlabel(xlabel=AX_XLABEL)
     fig.savefig(
-        fname=path_graph_svg,
+        fname=PATH_GRAPH_SVG,
         format="svg"
     )
     fig.savefig(
-        fname=path_graph_png,
+        fname=PATH_GRAPH_PNG,
         format="png"
     )
 
