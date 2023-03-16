@@ -19,7 +19,7 @@ This script creates a scatter plot of PSA v. Date.
 - 2021-11-11 High PSA
 - 2022-02-07 Stage IV metastatic prostate cancer confirmed
 - 2022-02-17 Begin androgen deprivation therapy, every six months
-- 2022-03-08 Begin androgen receptor inhibitor therapy, daily
+- 2022-02-25 Begin androgen receptor inhibitor therapy, daily
 - 2022-05-25 Begin chemotherapy, every three weeks, six times
 - 2022-05-25 Begin bone strengthening therapy, every four weeks
 - 2022-12-01 Responding well to treatment, cancer controlled, continuing androgen deprivation  and receptor inhibitor therapies
