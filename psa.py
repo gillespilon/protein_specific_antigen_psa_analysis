@@ -47,8 +47,8 @@ def main():
     PATH_GRAPH_PNG = Path("psa.png")
     PATH_DATA = Path("psa.csv")
     AX_YLABEL = "PSA (ng/mL)"
-    AX_XLABEL = "Date"
-    X_COLUMN = "Date"
+    AX_XLABEL = "DATE"
+    X_COLUMN = "DATE"
     FIGSIZE = (12, 9)
     GRID_ALPHA = 0.1
     Y_COLUMN = "PSA"
