@@ -37,7 +37,7 @@ physician.
 
 from pathlib import Path
 
-import datasense as ds
+import dawgdad as dd
 import numpy as np
 
 
@@ -52,14 +52,14 @@ def main():
     FIGSIZE = (12, 9)
     GRID_ALPHA = 0.1
     Y_COLUMN = "PSA"
-    ds.style_graph()
-    df = ds.read_file(
+    dd.style_graph()
+    df = dd.read_file(
         file_name=PATH_DATA,
         parse_dates=[X_COLUMN]
     )
     x = df[X_COLUMN]
     y = df[Y_COLUMN]
-    fig, ax = ds.plot_scatter_x_y(
+    fig, ax = dd.plot_scatter_x_y(
         X=x,
         y=y,
         figsize=FIGSIZE
