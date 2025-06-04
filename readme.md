@@ -1,4 +1,4 @@
-[#](#) Protein-specific antigen (PSA) analysis
+# Protein-specific antigen (PSA) analysis
 
 ## In brevi
 
