@@ -6,8 +6,6 @@ Prostate-specific antigen (PSA) is produced for the ejaculate, where it liquifie
 
 This script creates a scatter plot of PSA v. Date.
 
-![psa.svg](psa.svg)
-
 ## Milestones
 
 - 2012-04-02 High PSA
