@@ -45,7 +45,7 @@ def main():
     AX_TITLE = "Prostate-specific Antigen (PSA) Test"
     PATH_GRAPH_SVG = Path("psa.svg")
     PATH_GRAPH_PNG = Path("psa.png")
-    PATH_DATA = Path("psa.csv")
+    PATH_DATA = Path("psa.ods")
     AX_YLABEL = "PSA (ng/mL)"
     AX_XLABEL = "DATE"
     X_COLUMN = "DATE"
